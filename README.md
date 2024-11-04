@@ -18,3 +18,5 @@ Jump through the level and try to reach the end, there is a big goal at the bott
 
 Make sure to not touch the ground and try to avoid obstacles in water
 Remember about your health and make sure to reset it by shooting the purple orbs
+
+To add the OpenAI api go to the OpenAIcontroller object in the scene and paste in the API key. Message Luca to get the api key or make one at https://platform.openai.com/settings/organization/api-keys
