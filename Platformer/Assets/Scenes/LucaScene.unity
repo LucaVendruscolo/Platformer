@@ -16223,36 +16223,11 @@ MonoBehaviour:
   whatIsWater:
     serializedVersion: 2
     m_Bits: 16
-  rb: {fileID: 1643047781}
-  pm: {fileID: 1643047785}
-  sl: {fileID: 1643047787}
   waterGroundDrag: 10
-  waterAirDrag: 2
+  waterXAirDrag: 0
+  waterYAirDrag: 0
   waterGravity: 9.81
-  waterWalkSpeed: 0
-  waterSprintSpeed: 0
---- !u!114 &1643047785 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7948665524351177484, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
-  m_PrefabInstance: {fileID: 4639842939480701533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818758524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41dc20df6b25adc47b99e38011addb5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1643047787 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3061306562977996431, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
-  m_PrefabInstance: {fileID: 4639842939480701533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818758524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eff1ac80abe760c438cca91e233c0c5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  waterDownwardForce: 0
 --- !u!1 &1661667026
 GameObject:
   m_ObjectHideFlags: 0
@@ -23098,7 +23073,7 @@ PrefabInstance:
       objectReference: {fileID: 73532395}
     - target: {fileID: 2252368309117353474, guid: dbb06d81c2953e84981582068b4b2531, type: 3}
       propertyPath: m_VersionIndex
-      value: 1304
+      value: 1307
       objectReference: {fileID: 0}
     - target: {fileID: 6244223276983170944, guid: dbb06d81c2953e84981582068b4b2531, type: 3}
       propertyPath: m_Mesh
@@ -23399,6 +23374,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 370745110809574505, guid: e2ac093d2c94e7745a588fac61f09757, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 370745110809574505, guid: e2ac093d2c94e7745a588fac61f09757, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1528630023177650425, guid: e2ac093d2c94e7745a588fac61f09757, type: 3}
       propertyPath: m_Camera
       value: 
