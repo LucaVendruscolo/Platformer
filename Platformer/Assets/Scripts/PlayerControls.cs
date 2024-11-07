@@ -14,6 +14,7 @@ public class PlayerControls : MonoBehaviour
     public InputAction crouch;
     public InputAction slide;
     public InputAction sprint;
+    public InputAction usePower;
     private void Awake()
     {
         playerControls = new PlayerInputActions();
@@ -39,6 +40,9 @@ public class PlayerControls : MonoBehaviour
         sprint = playerControls.Player.Sprint;
         sprint.Enable();
 
+        usePower = playerControls.Player.UsePower;
+        usePower.Enable();
+
     }
 
     private void OnDisable()
@@ -49,5 +53,6 @@ public class PlayerControls : MonoBehaviour
         crouch.Disable();
         slide.Disable();
         sprint.Disable();
+        usePower.Disable();
     }
 }

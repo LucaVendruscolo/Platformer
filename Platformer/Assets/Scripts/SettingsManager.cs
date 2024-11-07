@@ -16,6 +16,6 @@ public class SettingsManager : MonoBehaviour
     public static int LoadSelectedGun() // this loads the selected gun. 0 is pistol and 1 is shotgun. just change the number for now and it will load 
     {
         
-        return PlayerPrefs.GetInt(SelectedGunKey, 1);
+        return PlayerPrefs.GetInt(SelectedGunKey, 0);
     }
 }
