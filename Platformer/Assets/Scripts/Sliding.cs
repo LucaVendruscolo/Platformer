@@ -42,7 +42,7 @@ public class Sliding : MonoBehaviour
             slideBuffer = true;
         }
         //Checking if the user can slide
-        if (slideBuffer && (moveInput.x != 0 || moveInput.y != 0) && pm.grounded) {
+        if (slideBuffer && (moveInput.x != 0 || moveInput.y != 0) && pm.OnSlope()) {
             slideBuffer = false;
             Debug.Log("Sliding");
             StartSlide();

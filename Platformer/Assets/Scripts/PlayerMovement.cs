@@ -83,10 +83,14 @@ public class PlayerMovement : MonoBehaviour
 
     public bool sliding;
     public bool inWater;
+
+    private Vector3 originalGravity;
     
     void Start()
     {
         EventManager.OnTimerStart();
+
+        originalGravity = new Vector3(0,-9.81f,0);
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -323,7 +327,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(moveDirection.normalized * speed * 10f * airMultiplier, ForceMode.Force);
         }
 
-        rb.useGravity = !OnSlope();
+        //rb.useGravity = !OnSlope();
 
     }
 
@@ -448,8 +452,10 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.2f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            Physics.gravity = new Vector3(0, 0, 0);
             return angle < maxSlopeAngle && angle != 0;
         }   
+        Physics.gravity = originalGravity;
         return false;
     }
 

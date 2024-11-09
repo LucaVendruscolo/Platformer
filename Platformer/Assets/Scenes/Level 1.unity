@@ -6322,6 +6322,10 @@ PrefabInstance:
       propertyPath: debugDeadState
       value: 
       objectReference: {fileID: 1644614246}
+    - target: {fileID: 1809394396450940657, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: usePower.m_Name
+      value: Use Power
+      objectReference: {fileID: 0}
     - target: {fileID: 3000088787147897781, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -6345,6 +6349,10 @@ PrefabInstance:
     - target: {fileID: 3732723473261740335, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
       propertyPath: m_ProvidesContacts
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496852198343162884, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: jumpPowerUpForce
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4637222562765765591, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -6463,7 +6471,9 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8751372710786829666, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+    - {fileID: 4290283642142736906, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}

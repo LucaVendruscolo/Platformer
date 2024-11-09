@@ -26,6 +26,7 @@ public class PlayerCam : MonoBehaviour
     public float maxFov;
     private float fovMultiplier;
 
+    private bool canProcessInput = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,29 +40,45 @@ public class PlayerCam : MonoBehaviour
         sensX = PlayerPrefs.GetFloat("Sensitivity", 2.0f); // 2.0f is a default value
         sensY = sensX; // Assuming both axes use the same sensitivity
 
-        // Initialize xRotation and yRotation based on the current camera rotation
-        Vector3 currentRotation = transform.rotation.eulerAngles;
-        xRotation = currentRotation.x;
-        yRotation = currentRotation.y;
+        // Start the coroutine to delay input processing
+        //This prevents the camera from moving whilst the game is loading
+        StartCoroutine(DelayInputProcessing());
+    }
+
+    private IEnumerator DelayInputProcessing()
+    {
+        yield return new WaitForSeconds(0.25f); // Adjust the delay duration as needed
+        canProcessInput = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (!canProcessInput) return;
+
+        // Debug log to trace mouse input values
         mouseInput = pc.look.ReadValue<Vector2>();
+
+        // Ensure mouse input values are within a reasonable range
+        if (mouseInput.x > 100 || mouseInput.y > 100 || mouseInput.x < -100 || mouseInput.y < -100)
+        {
+            return;
+        }
         //Get mouse input
         float mouseX = mouseInput.x * Time.deltaTime * sensX;
         float mouseY = mouseInput.y * Time.deltaTime * sensY;
 
-        if(rb.velocity.magnitude > 12)
-        {
-            //fovChange();
-        }
+        //if(rb.velocity.magnitude > 12)
+        //{
+        //    //fovChange();
+        //}
 
         yRotation += mouseX;
         xRotation -= mouseY;
 
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        yRotation = Mathf.Repeat(yRotation, 360f);
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);

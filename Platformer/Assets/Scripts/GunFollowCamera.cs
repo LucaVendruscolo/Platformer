@@ -7,7 +7,7 @@ public class GunFollowCamera : MonoBehaviour
     public Transform cameraTransform; 
     public Vector3 offset;            
 
-    void FixedUpdate()
+    void Update()
     {
         // the gun rotates with the camera.
         transform.rotation = cameraTransform.rotation;
