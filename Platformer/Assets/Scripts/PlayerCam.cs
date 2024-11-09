@@ -35,9 +35,14 @@ public class PlayerCam : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;    
         Cursor.visible = false;
 
-    // Load the sensitivity value from PlayerPrefs
+        // Load the sensitivity value from PlayerPrefs
         sensX = PlayerPrefs.GetFloat("Sensitivity", 2.0f); // 2.0f is a default value
         sensY = sensX; // Assuming both axes use the same sensitivity
+
+        // Initialize xRotation and yRotation based on the current camera rotation
+        Vector3 currentRotation = transform.rotation.eulerAngles;
+        xRotation = currentRotation.x;
+        yRotation = currentRotation.y;
     }
 
     // Update is called once per frame

@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public float sprintSpeed;
     public float slideSpeed;
     public float fallSpeed;
+    public float dashSpeed;
 
     public float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
@@ -78,7 +79,6 @@ public class PlayerMovement : MonoBehaviour
         sliding,
         falling,
         air
-    
     }
 
     public bool sliding;

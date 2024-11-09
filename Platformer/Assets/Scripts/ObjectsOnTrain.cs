@@ -44,7 +44,6 @@ public class ObjectsOnTrain : MonoBehaviour
         if (other.transform.parent.gameObject.CompareTag("player"))
         {
             //Initialize key variables to calculate interaction between player and train
-            Debug.Log("Player has entered the train");
             obj = other.transform.parent.gameObject;
             pm = obj.GetComponent<PlayerMovement>();
             playerSpeed = pm.sprintSpeed;
@@ -57,7 +56,6 @@ public class ObjectsOnTrain : MonoBehaviour
     {
         if (other.transform.parent.gameObject.CompareTag("player"))
         {
-            Debug.Log("Player has left the train");
             //Get the direction of both objects
             Vector3 trainDirection = (rb.position - lastTrainPosition).normalized;
             Vector3 playerDirection = (other.transform.position - lastTrainPosition).normalized;

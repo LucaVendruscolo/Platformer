@@ -3,16 +3,23 @@ using UnityEngine;
 public class PowerUps : MonoBehaviour
 {
     [Header("Power Up Settings")]
-    float jumpPowerUpForce = 20f;
-    float dashPowerUpForce = 10f;
+    public float jumpPowerUpForce;
+    public float dashPowerUpForce;
+    public float dashDuration;
     private bool hasJumpPowerUp = false;
     private bool hasDashPowerUp = false;
 
+
+    [Header("References")]
     private PlayerControls pc;
+    private Rigidbody rb;
+    private PlayerMovement pm;
 
     private void Start()
     {
         pc = GetComponent<PlayerControls>();
+        rb = GetComponent<Rigidbody>();
+        pm = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -51,12 +58,15 @@ public class PowerUps : MonoBehaviour
     private void PowerUpManager_GiveJumpPowerUp()
     {
         Debug.Log("Give Jump Power Up");
+        ResetPowers();
         hasJumpPowerUp = true;
+
     }
 
     private void PowerUpManager_UseJumpPowerUp()
     {
         Debug.Log("Use Jump Power Up");
+        rb.AddForce(Vector3.up * jumpPowerUpForce, ForceMode.Impulse);
         hasJumpPowerUp = false;
         PowerUpEventManager.OnRemoveDisplayPowerUp();
     }
@@ -64,14 +74,33 @@ public class PowerUps : MonoBehaviour
     private void PowerUpManager_GiveDashPowerUp()
     {
         Debug.Log("Give Dash Power Up");
+        ResetPowers();
+
         hasDashPowerUp = true;
     }
-
+    Vector3 originalGravity;
     private void PowerUpManager_UseDashPowerUp()
     {
+
+
+        originalGravity = Physics.gravity;
+        Physics.gravity = new Vector3(0, 0, 0);
+        rb.AddForce(pm.orientation.forward * dashPowerUpForce, ForceMode.Impulse);
+        Invoke(nameof(ResetGravity), dashDuration);
+
+
         Debug.Log("Use Dash Power Up");
         hasDashPowerUp = false;
         PowerUpEventManager.OnRemoveDisplayPowerUp();
+    }
+
+    private void ResetGravity() {
+        Physics.gravity = originalGravity;
+    }
+
+    private void ResetPowers() {
+        hasJumpPowerUp = false;
+        hasDashPowerUp = false;
     }
 
 }
