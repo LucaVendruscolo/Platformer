@@ -24,11 +24,15 @@ public class PowerUpCollision : MonoBehaviour
         if (powerType == PowerUpType.Jump) {
             PowerUpEventManager.OnGiveJumpPowerUp();
             PowerUpEventManager.OnDisplayJumpPowerUp();
+            BarEventManager.OnSliderReset();
+            ScoreEventManager.OnScoreIncrement();
         }
         else if (powerType == PowerUpType.Dash)
         {
             PowerUpEventManager.OnGiveDashPowerUp();
             PowerUpEventManager.OnDisplayDashPowerUp();
+            BarEventManager.OnSliderReset();
+            ScoreEventManager.OnScoreIncrement();
         }
 
         //Destroy the power up
