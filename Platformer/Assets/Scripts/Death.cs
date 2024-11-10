@@ -26,10 +26,11 @@ public class Death : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void OnCollisionEnter(Collision collision)
     {
-        // When you touch the danger ground, you die
-        if (Physics.Raycast(rb.position, Vector3.down, playerHeight * 0.5f + 0.1f, whatIsDanger))
+        // When you touch the danger, you die
+        Debug.Log("Collision with: " + collision.gameObject.layer);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("whatIsDanger"))
         {
             if (openAIController != null)
             {
@@ -37,7 +38,7 @@ public class Death : MonoBehaviour
             }
 
             debugDeadState.text = "Dead";
-            SceneManager.LoadScene("Menu"); 
+            SceneManager.LoadScene("Menu");
         }
     }
 }

@@ -66,6 +66,9 @@ public class PowerUps : MonoBehaviour
     private void PowerUpManager_UseJumpPowerUp()
     {
         Debug.Log("Use Jump Power Up");
+        //Reset y velocity
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        //Apply Jump Force
         rb.AddForce(Vector3.up * jumpPowerUpForce, ForceMode.Impulse);
         hasJumpPowerUp = false;
         PowerUpEventManager.OnRemoveDisplayPowerUp();
@@ -85,6 +88,10 @@ public class PowerUps : MonoBehaviour
 
         originalGravity = Physics.gravity;
         Physics.gravity = new Vector3(0, 0, 0);
+
+        //Reset y velocity
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        //Apply Dash Force
         rb.AddForce(pm.orientation.forward * dashPowerUpForce, ForceMode.Impulse);
         Invoke(nameof(ResetGravity), dashDuration);
 

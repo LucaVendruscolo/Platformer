@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public float sprintSpeed;
     public float slideSpeed;
     public float fallSpeed;
+    public float maxFallSpeed;
     public float dashSpeed;
 
     public float desiredMoveSpeed;
@@ -378,6 +379,14 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 limitedVel = flatVel.normalized * moveSpeed;//Calculate what the max velocity is
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);//Apply that velocity
             }
+
+            //Limit Fall speed when needed
+            flatVel = new Vector3(0, rb.velocity.y, 0);
+            if (flatVel.magnitude > maxFallSpeed)
+            {
+                Vector3 limitedVel = flatVel.normalized * maxFallSpeed;
+                rb.velocity = new Vector3(rb.velocity.x, limitedVel.y, rb.velocity.z);
+            }
         }
     }
 
@@ -411,6 +420,9 @@ public class PlayerMovement : MonoBehaviour
         {
             readyToDive = false;
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+            //Reset y velocity
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            //Apply Dive Force
             rb.AddForce(Vector3.down * diveForce, ForceMode.Impulse);
             
         }

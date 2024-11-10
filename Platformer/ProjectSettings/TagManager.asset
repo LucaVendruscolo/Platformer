@@ -12,6 +12,7 @@ TagManager:
   - Train
   - secret
   - hitbox
+  - bullet
   layers:
   - Default
   - TransparentFX
