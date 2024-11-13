@@ -5,7 +5,7 @@ public class GunLoader : MonoBehaviour
     // the gun prefabs.
     public GameObject PistolPrefab;
     public GameObject ShotgunPrefab;
-
+    public GameObject explosionPrefab;  // Reference to the explosion prefab
     private GameObject currentGun;  // currently equipped gun.
     private Transform playerCamera;
 
@@ -45,6 +45,12 @@ public class GunLoader : MonoBehaviour
         if (gunFollowCamera != null)
         {
             gunFollowCamera.cameraTransform = playerCamera;
+        }
+
+        var weaponScript = currentGun.GetComponent<Weapon>();
+        if (weaponScript != null)
+        {
+            weaponScript.explosionPrefab = explosionPrefab;
         }
     }
 }

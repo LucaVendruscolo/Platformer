@@ -13,6 +13,7 @@ TagManager:
   - secret
   - hitbox
   - bullet
+  - powerup
   layers:
   - Default
   - TransparentFX

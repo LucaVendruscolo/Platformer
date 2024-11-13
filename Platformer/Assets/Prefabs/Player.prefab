@@ -284,6 +284,7 @@ MonoBehaviour:
   sprintSpeed: 13
   slideSpeed: 30
   fallSpeed: 20
+  maxFallSpeed: 0
   dashSpeed: 0
   desiredMoveSpeed: 0
   speedIncreaseMultiplier: 1.5
@@ -466,6 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PistolPrefab: {fileID: 8708640458777992505, guid: a59a23b03543f034098d3d11031631dc, type: 3}
   ShotgunPrefab: {fileID: 8708640458777992505, guid: a6cfecfac88406946894cc403a709d80, type: 3}
+  explosionPrefab: {fileID: 4213668841573073143, guid: 7bcf1f0fed55cc4439230a93b514638b, type: 3}
 --- !u!114 &4496852198343162884
 MonoBehaviour:
   m_ObjectHideFlags: 0
