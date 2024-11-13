@@ -16,9 +16,13 @@ public class Weapon : MonoBehaviour
     public float explosionDuration = 0.1f;
     public float explosionScale = 0.5f;
 
+    public float knockbackStrength = 5f;      // Strength of the knockback for the shotgun
+    private Rigidbody playerRigidbody;        // Reference to the player's Rigidbody for knockback
+
     void Awake()
     {
         playerControls = new PlayerInputActions();
+        playerRigidbody = GetComponentInParent<Rigidbody>();  // Assuming the Weapon is a child of the player
     }
 
     private void OnEnable()
@@ -35,24 +39,34 @@ public class Weapon : MonoBehaviour
 
     private void Fire(InputAction.CallbackContext context)
     {
+        // Apply knockback if the weapon has a spread (indicating it's a shotgun)
+        if (spreadAngle > 0 && playerRigidbody != null)
+        {
+            ApplyKnockback();
+        }
+
         for (int i = 0; i < bulletCount; i++)
         {
-            
             Quaternion spreadRotation = Quaternion.Euler(
                 Random.Range(-spreadAngle, spreadAngle),  
                 Random.Range(-spreadAngle, spreadAngle),  
                 0);                                       
 
-            
             Vector3 direction = spreadRotation * bulletSpawn.forward;
 
-            
             if (Physics.Raycast(bulletSpawn.position, direction, out RaycastHit hit, range))
             {
                 HandleHit(hit);
                 CreateExplosionEffect(hit.point);  // explosion effect.
             }
         }
+    }
+
+    private void ApplyKnockback()
+    {
+        // Calculate the knockback force in the opposite direction of the bullet spawn forward direction
+        Vector3 knockbackDirection = -bulletSpawn.forward;
+        playerRigidbody.AddForce(knockbackDirection * knockbackStrength, ForceMode.Impulse);
     }
 
     // apply power up effects
