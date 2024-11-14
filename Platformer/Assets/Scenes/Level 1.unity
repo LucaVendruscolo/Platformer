@@ -6644,6 +6644,14 @@ PrefabInstance:
       propertyPath: barRemoveSpeed
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 9058117408238878782, guid: e2ac093d2c94e7745a588fac61f09757, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058117408238878782, guid: e2ac093d2c94e7745a588fac61f09757, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4206806466065483133, guid: e2ac093d2c94e7745a588fac61f09757, type: 3}

@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
     {
         EventManager.OnTimerStart();
 
-        originalGravity = new Vector3(0,-9.81f,0);
+        originalGravity = new Vector3(0,-16f,0);
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;

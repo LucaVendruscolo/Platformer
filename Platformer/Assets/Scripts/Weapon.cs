@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,8 +16,12 @@ public class Weapon : MonoBehaviour
     public float explosionDuration = 0.1f;
     public float explosionScale = 0.5f;
 
-    public float knockbackStrength = 5f;      // Strength of the knockback for the shotgun
-    private Rigidbody playerRigidbody;        // Reference to the player's Rigidbody for knockback
+    public float knockbackStrength = 50f;      // Strength of the knockback for the shotgun
+    private Rigidbody playerRigidbody;         // Reference to the player's Rigidbody for knockback
+
+    public float reloadTime = 1.5f;            // Duration of the reload time in seconds
+    private bool isReloading = false;          // Tracks if the weapon is reloading
+    public event Action<float> OnReloadStart;
 
     void Awake()
     {
@@ -39,6 +43,16 @@ public class Weapon : MonoBehaviour
 
     private void Fire(InputAction.CallbackContext context)
     {
+        // Check if the weapon is reloading; if so, don't allow firing
+        if (isReloading)
+        {
+            Debug.Log("Reloading...");
+            return;
+        }
+
+        // Start the reload process after firing
+        StartCoroutine(Reload());
+
         // Apply knockback if the weapon has a spread (indicating it's a shotgun)
         if (spreadAngle > 0 && playerRigidbody != null)
         {
@@ -48,8 +62,8 @@ public class Weapon : MonoBehaviour
         for (int i = 0; i < bulletCount; i++)
         {
             Quaternion spreadRotation = Quaternion.Euler(
-                Random.Range(-spreadAngle, spreadAngle),  
-                Random.Range(-spreadAngle, spreadAngle),  
+                UnityEngine.Random.Range(-spreadAngle, spreadAngle),  
+                UnityEngine.Random.Range(-spreadAngle, spreadAngle),  
                 0);                                       
 
             Vector3 direction = spreadRotation * bulletSpawn.forward;
@@ -62,14 +76,19 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    private IEnumerator Reload()
+    {
+        isReloading = true;  // Set reloading state
+        yield return new WaitForSeconds(reloadTime);  // Wait for the reload duration
+        isReloading = false;  // Reset reloading state
+    }
+
     private void ApplyKnockback()
     {
-        // Calculate the knockback force in the opposite direction of the bullet spawn forward direction
         Vector3 knockbackDirection = -bulletSpawn.forward;
         playerRigidbody.AddForce(knockbackDirection * knockbackStrength, ForceMode.Impulse);
     }
 
-    // apply power up effects
     private void ApplyPowerUp(GameObject powerUpObject)
     {
         PowerUpCollision powerUp = powerUpObject.GetComponent<PowerUpCollision>();
@@ -83,13 +102,12 @@ public class Weapon : MonoBehaviour
 
     private void CreateExplosionEffect(Vector3 position)
     {
-        // creates a little star sprite (for now) that appears for a fraction of a second at whatever u shoot.
         GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
         
-        Transform playerTransform = Camera.main.transform;  // this makes the sprite face the player
+        Transform playerTransform = Camera.main.transform;
         explosion.transform.LookAt(playerTransform);  
         
-        explosion.transform.localScale *= explosionScale; // makes it smaller.  
+        explosion.transform.localScale *= explosionScale;  
         Destroy(explosion, explosionDuration);
     }
 
@@ -97,21 +115,19 @@ public class Weapon : MonoBehaviour
     {
         GameObject hitObject = hit.collider.gameObject;
 
-        // raycast tag checking
         if (hitObject.CompareTag("enemy"))
         {
             print("Hit " + hitObject.name + "!");
-            Destroy(hitObject);  // Destroy the enemy
+            Destroy(hitObject);  
             BarEventManager.OnSliderReset();
             ScoreEventManager.OnScoreIncrement();
         }
         else if (hitObject.CompareTag("secret"))
         {
-            // Trigger the secret event
             SecretTrigger secretTrigger = hitObject.GetComponent<SecretTrigger>();
             if (secretTrigger != null)
             {
-                Destroy(hitObject);  // Destroy the secret
+                Destroy(hitObject);  
                 secretTrigger.OnTargetHit();
             }
         }
@@ -120,13 +136,12 @@ public class Weapon : MonoBehaviour
             print("Hit " + hitObject.transform.parent.name + "'s hitbox!");
             if (hitObject.transform.parent != null)
             {
-                // destroy hitbox parent.
                 Destroy(hitObject.transform.parent.gameObject);
             }
             BarEventManager.OnSliderReset();
             ScoreEventManager.OnScoreIncrement();
         }
-        else if (hitObject.CompareTag("powerup"))  // power up apply.
+        else if (hitObject.CompareTag("powerup"))
         {
             ApplyPowerUp(hitObject);
         }
