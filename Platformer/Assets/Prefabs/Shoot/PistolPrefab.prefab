@@ -152,6 +152,7 @@ MonoBehaviour:
   explosionDuration: 0.1
   explosionScale: 0.5
   knockbackStrength: 0
+  reloadTime: 0
 --- !u!114 &5559266730263767911
 MonoBehaviour:
   m_ObjectHideFlags: 0

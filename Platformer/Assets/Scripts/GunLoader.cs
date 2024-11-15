@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GunLoader : MonoBehaviour
 {
-    // the gun prefabs.
     public GameObject PistolPrefab;
     public GameObject ShotgunPrefab;
     public GameObject explosionPrefab;  // Reference to the explosion prefab
@@ -14,8 +13,8 @@ public class GunLoader : MonoBehaviour
         playerCamera = Camera.main.transform;  // the player camera.
         LoadGun();
     }
+    
 
-    // this will load the gun from settings and instantiate it.
     public void LoadGun()
     {
         if (currentGun != null)
@@ -23,12 +22,10 @@ public class GunLoader : MonoBehaviour
             Destroy(currentGun);
         }
 
-        // gets the gun id thats saved in settings.
         int selectedGunID = SettingsManager.LoadSelectedGun();
-
         switch (selectedGunID)
         {
-            case 0:  // Pistol 
+            case 0:  // Pistol
                 currentGun = Instantiate(PistolPrefab, transform);
                 break;
             case 1:  // Shotgun
@@ -36,21 +33,49 @@ public class GunLoader : MonoBehaviour
                 break;
             default:
                 Debug.LogWarning("Unknown gun ID: " + selectedGunID);
-                currentGun = Instantiate(PistolPrefab, transform);  // defaults to pistol if something is wrong in the settings.
+                currentGun = Instantiate(PistolPrefab, transform);  // defaults to pistol.
                 break;
         }
 
-        // this will attach the player camera to the script on the gun that makes it follow the camera.
         var gunFollowCamera = currentGun.GetComponent<GunFollowCamera>();
         if (gunFollowCamera != null)
         {
             gunFollowCamera.cameraTransform = playerCamera;
         }
 
-        var weaponScript = currentGun.GetComponent<Weapon>();
-        if (weaponScript != null)
+        var currentWeapon = currentGun.GetComponent<Weapon>();
+        if (currentWeapon != null)
         {
-            weaponScript.explosionPrefab = explosionPrefab;
+            currentWeapon.explosionPrefab = explosionPrefab;
+
+        
+            GameObject canvasObject = GameObject.Find("UICanvasObject");
+            if (canvasObject != null)
+            {
+                Transform reloadBarTransform = canvasObject.transform.Find("ReloadBar");
+                if (reloadBarTransform != null)
+                {
+                    var reloadProgressBar = reloadBarTransform.GetComponent<ReloadProgressBar>();
+                    if (reloadProgressBar != null)
+                    {
+                        reloadProgressBar.weapon = currentWeapon;
+                        reloadProgressBar.SubscribeToWeapon();  
+                    }
+                    else
+                    {
+                        Debug.LogError("no reloadprogressbar script found under reloadbar.");
+                    }
+                }
+                else
+                {
+                    Debug.LogError("reload bar isn't found under uicanvasobject.");
+                }
+            }
+            else
+            {
+                Debug.LogError("can't find uicanvasobject.");
+            }
         }
-    }
+}
+
 }

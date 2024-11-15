@@ -5,48 +5,72 @@ using UnityEngine.UI;
 public class ReloadProgressBar : MonoBehaviour
 {
     private Slider reloadSlider;
-    public Weapon weapon;                  // Reference to the Weapon script
-    private bool isReloading = false;      // Tracks if the reload is active
+    public Weapon weapon; 
 
     private void Awake()
     {
         reloadSlider = gameObject.GetComponent<Slider>();
-        reloadSlider.gameObject.SetActive(false);  // Hide the slider initially
+        if (reloadSlider != null)
+        {
+            reloadSlider.gameObject.SetActive(false);  
+        }
     }
 
     private void OnEnable()
     {
-        weapon.OnReloadStart += StartReload;
+        if (weapon != null)
+        {
+            weapon.OnReloadStart += StartReload;
+        }
+        else
+        {
+            Debug.LogError("weapon reference null in reloadprogressbar.");
+        }
     }
 
     private void OnDisable()
     {
-        weapon.OnReloadStart -= StartReload;
+        if (weapon != null)
+        {
+            weapon.OnReloadStart -= StartReload;
+        }
     }
 
     private void StartReload(float reloadTime)
     {
-        // Show the slider and start the reload progress bar
-        reloadSlider.gameObject.SetActive(true);
-        StartCoroutine(FillReloadBar(reloadTime));
+        if (reloadSlider != null)
+        {
+            reloadSlider.gameObject.SetActive(true);
+            StartCoroutine(FillReloadBar(reloadTime));
+        }
     }
 
     private IEnumerator FillReloadBar(float reloadTime)
     {
         float elapsedTime = 0f;
-        isReloading = true;
-        reloadSlider.value = 0f;  // Start at empty
+        reloadSlider.value = 0f;
 
         while (elapsedTime < reloadTime)
         {
             elapsedTime += Time.deltaTime;
-            reloadSlider.value = Mathf.Clamp01(elapsedTime / reloadTime);  // Update the slider based on elapsed time
+            reloadSlider.value = Mathf.Clamp01(elapsedTime / reloadTime);
             yield return null;
         }
 
-        // Hide the slider and reset
-        isReloading = false;
         reloadSlider.value = 1f;
-        reloadSlider.gameObject.SetActive(false);
+        reloadSlider.gameObject.SetActive(false); 
     }
+
+    public void SubscribeToWeapon()
+    {
+        if (weapon != null)
+        {
+            weapon.OnReloadStart += StartReload;
+        }
+        else
+        {
+            Debug.LogError("Weapon reference null in reloadprogressbar.cs");
+        }
+    }
+
 }

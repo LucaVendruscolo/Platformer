@@ -16,17 +16,17 @@ public class Weapon : MonoBehaviour
     public float explosionDuration = 0.1f;
     public float explosionScale = 0.5f;
 
-    public float knockbackStrength = 50f;      // Strength of the knockback for the shotgun
-    private Rigidbody playerRigidbody;         // Reference to the player's Rigidbody for knockback
+    public float knockbackStrength = 50f;      
+    private Rigidbody playerRigidbody;         // for knocking the player back (shotgun)
 
-    public float reloadTime = 1.5f;            // Duration of the reload time in seconds
-    private bool isReloading = false;          // Tracks if the weapon is reloading
+    public float reloadTime = 1.5f;            
+    private bool isReloading = false;         
     public event Action<float> OnReloadStart;
 
     void Awake()
     {
         playerControls = new PlayerInputActions();
-        playerRigidbody = GetComponentInParent<Rigidbody>();  // Assuming the Weapon is a child of the player
+        playerRigidbody = GetComponentInParent<Rigidbody>();  
     }
 
     private void OnEnable()
@@ -43,23 +43,22 @@ public class Weapon : MonoBehaviour
 
     private void Fire(InputAction.CallbackContext context)
     {
-        // Check if the weapon is reloading; if so, don't allow firing
+        // if the weapon is currently reloading, return. 
         if (isReloading)
         {
-            Debug.Log("Reloading...");
             return;
         }
 
-        // Start the reload process after firing
+        // start reload process.
         StartCoroutine(Reload());
 
-        // Apply knockback if the weapon has a spread (indicating it's a shotgun)
+        // knockback (only on shotgun)
         if (spreadAngle > 0 && playerRigidbody != null)
         {
             ApplyKnockback();
         }
 
-        for (int i = 0; i < bulletCount; i++)
+        for (int i = 0; i < bulletCount; i++) // applies bullets.
         {
             Quaternion spreadRotation = Quaternion.Euler(
                 UnityEngine.Random.Range(-spreadAngle, spreadAngle),  
@@ -78,9 +77,11 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator Reload()
     {
-        isReloading = true;  // Set reloading state
-        yield return new WaitForSeconds(reloadTime);  // Wait for the reload duration
-        isReloading = false;  // Reset reloading state
+        isReloading = true; 
+        OnReloadStart?.Invoke(reloadTime);
+        yield return new WaitForSeconds(reloadTime); 
+        isReloading = false;  
+
     }
 
     private void ApplyKnockback()

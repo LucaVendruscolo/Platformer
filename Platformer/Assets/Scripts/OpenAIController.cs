@@ -34,7 +34,7 @@ public class OpenAIController : MonoBehaviour
     private void InitializeMotivation()
     {
         messages = new List<ChatMessage> {
-            new ChatMessage(ChatMessageRole.System, "You are a motivational coach. Provide short, encouraging messages to help players stay motivated and try again.")
+            new ChatMessage(ChatMessageRole.System, "You are a coach who makes fun of the player when they die. Provide short, belittling messages that makes fun of the player.")
         };
         
         motivationalText.text = "";
@@ -45,7 +45,7 @@ public class OpenAIController : MonoBehaviour
     {
         Debug.Log("Attempting to retrieve a motivational message from OpenAI.");
 
-        messages.Add(new ChatMessage(ChatMessageRole.User, "The player has died. Give a motivational message."));
+        messages.Add(new ChatMessage(ChatMessageRole.User, "The player has died. Give a motivational message. Make it 40 characters or less. Make fun of the player whilst doing it."));
 
         try
         {
