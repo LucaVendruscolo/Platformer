@@ -4351,6 +4351,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingEnergy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5553139158082556891, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343146184251608337, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6341,6 +6349,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingEnergy
       objectReference: {fileID: 0}
+    - target: {fileID: 5553139158082556891, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343146184251608337, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7390,6 +7406,14 @@ PrefabInstance:
     - target: {fileID: 2924543857622437670, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
       propertyPath: m_Name
       value: MovingEnergy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553139158082556891, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343146184251608337, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12063,6 +12087,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingEnergy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5553139158082556891, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343146184251608337, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12222,6 +12254,14 @@ PrefabInstance:
     - target: {fileID: 2924543857622437670, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
       propertyPath: m_Name
       value: MovingEnergy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553139158082556891, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343146184251608337, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
