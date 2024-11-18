@@ -119,50 +119,33 @@ public class Weapon : MonoBehaviour
 
         if (hitObject.CompareTag("enemy"))
         {
-            // Apply damage to the enemy
-            EnemyHealth enemyHealth = hitObject.GetComponent<EnemyHealth>();
-            if (enemyHealth != null)
+            print("Hit " + hitObject.name + "!");
+            Destroy(hitObject);  
+            BarEventManager.OnSliderReset();
+            ScoreEventManager.OnScoreIncrement();
+        }
+        else if (hitObject.CompareTag("secret"))
+        {
+            SecretTrigger secretTrigger = hitObject.GetComponent<SecretTrigger>();
+            if (secretTrigger != null)
             {
-                enemyHealth.TakeDamage(damage);
-                print($"Hit {hitObject.name}! Dealt {damage} damage.");
-            }
-            else
-            {
-                Debug.LogWarning($"{hitObject.name} has no EnemyHealth component.");
+                Destroy(hitObject);  
+                secretTrigger.OnTargetHit();
             }
         }
         else if (hitObject.CompareTag("hitbox"))
         {
-            // Apply damage to the parent enemy via the hitbox
+            print("Hit " + hitObject.transform.parent.name + "'s hitbox!");
             if (hitObject.transform.parent != null)
             {
-                EnemyHealth parentHealth = hitObject.transform.parent.GetComponent<EnemyHealth>();
-                if (parentHealth != null)
-                {
-                    parentHealth.TakeDamage(damage);
-                    print($"Hit {hitObject.transform.parent.name}'s hitbox! Dealt {damage} damage.");
-                }
-                else
-                {
-                    Debug.LogWarning($"Parent of {hitObject.name} has no EnemyHealth component.");
-                }
+                Destroy(hitObject.transform.parent.gameObject);
             }
-        }
-        else if (hitObject.CompareTag("secret"))
-        {
-            // Handle secret trigger
-            SecretTrigger secretTrigger = hitObject.GetComponent<SecretTrigger>();
-            if (secretTrigger != null)
-            {
-                Destroy(hitObject);
-                secretTrigger.OnTargetHit();
-            }
+            BarEventManager.OnSliderReset();
+            ScoreEventManager.OnScoreIncrement();
         }
         else if (hitObject.CompareTag("powerup"))
         {
-            // Handle power-ups
             ApplyPowerUp(hitObject);
         }
     }
-
 }
