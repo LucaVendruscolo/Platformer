@@ -10,6 +10,7 @@ public class ProgressBar : MonoBehaviour
     private Slider slider;
     public float barRemoveSpeed = 1f;
     private bool _isRunning;
+    private bool hasSpawnedEnergy = false;
 
     private void OnEnable()
     {
@@ -17,7 +18,7 @@ public class ProgressBar : MonoBehaviour
     }
 
     private void OnDisable()
-    { 
+    {
         BarEventManager.SliderReset -= BarEventManager_SliderReset;
     }
 
@@ -25,20 +26,31 @@ public class ProgressBar : MonoBehaviour
     {
         slider = gameObject.GetComponent<Slider>();
     }
+
     void Update()
     {
-        //Reduce the players health each frame
+        // Reduce the player's health each frame
         slider.value -= barRemoveSpeed * Time.deltaTime;
-        if(slider.value <= 0)
+        if (slider.value <= 0)
         {
-            //Player is dead
+            // Player is dead
             SceneManager.LoadScene("Menu");
             Debug.Log("Player is dead");
+        }
+        else if (slider.value <= 0.3 && !hasSpawnedEnergy)
+        {
+            Debug.Log("Player is low on health");
+            // Spawns energy
+            BarEventManager.OnSliderSpawnEnergy();
+            hasSpawnedEnergy = true;
+        }
+        else if (slider.value > 0.3)
+        {
+            hasSpawnedEnergy = false;
         }
     }
 
 
-    //Reset the players health
+    // Reset the player's health
     private void BarEventManager_SliderReset() => slider.value = slider.maxValue;
-
 }
