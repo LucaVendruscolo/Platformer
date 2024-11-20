@@ -24,10 +24,21 @@ public class Weapon : MonoBehaviour
     private bool isReloading = false;         
     public event Action<float> OnReloadStart;
 
+    private Animator animator; // recoil animation
+    public ParticleSystem muzzleFlash; // muzzle flash effect
+    public AudioSource pistolShootingSound; // pistol sound
+
+
     void Awake()
     {
         playerControls = new PlayerInputActions();
         playerRigidbody = GetComponentInParent<Rigidbody>();  
+
+        animator = GetComponentInChildren<Animator>();
+        if (animator == null)
+        {
+            Debug.LogError("no animator found.");
+        }
     }
 
     private void OnEnable()
@@ -48,6 +59,23 @@ public class Weapon : MonoBehaviour
         if (isReloading)
         {
             return;
+        }
+
+        if (pistolShootingSound != null)
+        {
+            pistolShootingSound.Play();
+        }
+
+        if (animator != null) 
+        {
+            animator.SetTrigger("Shoot");
+        } else {
+            Debug.Log("Animator is null!!!");
+        }
+
+        if (muzzleFlash != null)
+        {
+            muzzleFlash.Play();
         }
 
         // start reload process.
@@ -104,13 +132,21 @@ public class Weapon : MonoBehaviour
 
     private void CreateExplosionEffect(Vector3 position)
     {
-        GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
-        
-        Transform playerTransform = Camera.main.transform;
-        explosion.transform.LookAt(playerTransform);  
-        
-        explosion.transform.localScale *= explosionScale;  
-        Destroy(explosion, explosionDuration);
+        if (muzzleFlash != null)
+        {
+            
+            ParticleSystem explosionEffect = Instantiate(muzzleFlash, position, Quaternion.identity);
+
+
+            explosionEffect.Play();
+
+
+            Destroy(explosionEffect.gameObject, explosionEffect.main.duration);
+        }
+        else
+        {
+            Debug.LogError("no particle system.");
+        }
     }
 
     private void HandleHit(RaycastHit hit)
