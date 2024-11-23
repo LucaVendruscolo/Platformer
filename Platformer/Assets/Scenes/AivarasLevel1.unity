@@ -13054,7 +13054,7 @@ PrefabInstance:
       objectReference: {fileID: 49361568}
     - target: {fileID: 3715491384173130334, guid: 552dfb543aa628147af7f68831d17609, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3715491384173130334, guid: 552dfb543aa628147af7f68831d17609, type: 3}
       propertyPath: parentTrainGroup
@@ -13070,7 +13070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7568512205379951617, guid: 552dfb543aa628147af7f68831d17609, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7568512205379951617, guid: 552dfb543aa628147af7f68831d17609, type: 3}
       propertyPath: m_ObstacleAvoidanceType
