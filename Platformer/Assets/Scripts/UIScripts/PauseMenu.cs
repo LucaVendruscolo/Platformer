@@ -66,8 +66,6 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // Disable input controls
-        //playerControls.UI.Disable();
     }
     public void RestartGame()
     {
