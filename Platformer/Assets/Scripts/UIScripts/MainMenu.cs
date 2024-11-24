@@ -26,6 +26,10 @@ public class MainMenu : MonoBehaviour
     { 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    public void PlayTutorial()
+    { 
+        SceneManager.LoadScene("Level Tutorial 1");
+    }
     public void ShowOptions()
     {
         mainMenuCanvas.gameObject.SetActive(false); // Hide the Main Menu canvas

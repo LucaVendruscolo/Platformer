@@ -12,8 +12,15 @@ public class DeathSceneManager : MonoBehaviour
     }
     public void TryAgain()
     {
-        // Reload the game scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
+        // Reload the scene stored in Death.lastScene
+        if (!string.IsNullOrEmpty(Death.lastScene))
+        {
+            SceneManager.LoadScene(Death.lastScene);
+        }
+        else
+        {
+            Debug.LogError("No previous scene stored!");
+        }
     }
 
     public void MainMenu()
