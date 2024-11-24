@@ -300,6 +300,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 552dfb543aa628147af7f68831d17609, type: 3}
+--- !u!1 &17857688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 775905886214442057, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+  m_PrefabInstance: {fileID: 1230932077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &27685275 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7498195567899970420, guid: cd8864057edbe4e43bb5ad96ea834f10, type: 3}
@@ -4606,6 +4611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1868338712}
+  pauseMenuPanel: {fileID: 0}
+  optionsMenuPanel: {fileID: 0}
 --- !u!1001 &1230932077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4642,6 +4649,30 @@ PrefabInstance:
       propertyPath: debugDeadState
       value: 
       objectReference: {fileID: 1644614246}
+    - target: {fileID: 1446618088484022999, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: m_Size.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446618088484022999, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: m_Size.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446618088484022999, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: m_Size.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574682909569109479, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574682909569109479, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574682909569109479, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1809394396450940657, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
       propertyPath: usePower.m_Name
       value: Use Power
@@ -4742,6 +4773,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5306107079429024722, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: emergencySpawnArea
+      value: 
+      objectReference: {fileID: 17857688}
     - target: {fileID: 7931633721377025253, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
       propertyPath: m_TagString
       value: player
