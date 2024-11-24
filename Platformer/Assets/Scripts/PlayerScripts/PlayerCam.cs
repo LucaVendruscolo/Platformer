@@ -44,6 +44,15 @@ public class PlayerCam : MonoBehaviour
         //This prevents the camera from moving whilst the game is loading
         StartCoroutine(DelayInputProcessing());
     }
+    public void UpdateSensitivity(float newSensitivity)
+    {
+        sensX = newSensitivity;
+        sensY = newSensitivity;
+
+        // Save to PlayerPrefs for persistence
+        PlayerPrefs.SetFloat("Sensitivity", newSensitivity);
+        PlayerPrefs.Save();
+    }
 
     private IEnumerator DelayInputProcessing()
     {

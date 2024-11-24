@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI; // Assign the pause menu UI in the Inspector
+    public GameObject pauseMenuPanel;
+    public GameObject optionsMenuPanel;
     private bool isPaused = false;
     private PlayerInputActions playerControls ;
 
@@ -42,6 +44,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false); // Hide the pause menu
+        optionsMenuPanel.SetActive(false); // Ensure the options menu is hidden
         Time.timeScale = 1f; // Resume game time
         isPaused = false;
 
@@ -70,6 +73,17 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f; // Reset time scale to normal before restarting
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
+    }
+    public void OpenOptions()
+    {
+        pauseMenuPanel.SetActive(false);
+        optionsMenuPanel.SetActive(true);
+    }
+
+    public void CloseOptions()
+    {
+        optionsMenuPanel.SetActive(false);
+        pauseMenuPanel.SetActive(true);
     }
 
     public void GoToMainMenu()
