@@ -57,4 +57,9 @@ public class Timer : MonoBehaviour
         TimeSpan timeSpan = TimeSpan.FromSeconds(timeToDisplay);
         _timerText.text = "Time : " + timeSpan.ToString(@"mm\:ss\:ff");
     }
+    public float GetCurrentTime()//for win scene
+    {
+        return timeToDisplay;
+    }
+
 }

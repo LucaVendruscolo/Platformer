@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class DeathSceneManager : MonoBehaviour
 {
-    void Start()
+    void Start()//enable navigation
     {
 
         Cursor.lockState = CursorLockMode.None;

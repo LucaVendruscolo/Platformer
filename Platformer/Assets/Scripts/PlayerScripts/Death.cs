@@ -13,7 +13,7 @@ public class Death : MonoBehaviour
     public TMP_Text debugDeadState;
 
     private OpenAIController openAIController;
-    public static string lastScene; // Store the name of the last scene
+    public static string lastScene; 
 
     private void Start()
     {
@@ -37,7 +37,7 @@ public class Death : MonoBehaviour
             {
                 openAIController.DisplayMotivationalMessage();
             }
-            lastScene = SceneManager.GetActiveScene().name;
+            lastScene = SceneManager.GetActiveScene().name;//for restart function
             debugDeadState.text = "Dead";
             SceneManager.LoadScene("DeathScene");
         }

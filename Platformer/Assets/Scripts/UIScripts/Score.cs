@@ -1,10 +1,10 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Score : MonoBehaviour
 {
     private TMP_Text scoreText;
-
     private int score = 0;
 
     private void Awake()
@@ -25,5 +25,14 @@ public class Score : MonoBehaviour
     {
         score+=10;
         scoreText.text = "Score: " + score;
+    }
+    public void OnGameComplete()
+    {
+        // Store the final score in GameManager
+        GameManager.Instance.finalScore = score;
+    }
+    public int GetCurrentScore()
+    {
+        return score;
     }
 }

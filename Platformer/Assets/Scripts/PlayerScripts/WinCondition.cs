@@ -13,8 +13,15 @@ public class WinCondition : MonoBehaviour
     {
         if (other.tag == "win")
         {
+            // Store the score before loading the WinScene
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.finalScore = FindObjectOfType<Score>().GetCurrentScore(); 
+                GameManager.Instance.finalTime = FindObjectOfType<Timer>().GetCurrentTime();
+                GameManager.Instance.lastScene = SceneManager.GetActiveScene().name; 
+            }
             winUI.SetActive(true);
-            SceneManager.LoadScene("Menu"); // loads the menu when you win for now. will be a win screen in the full game.
+            SceneManager.LoadScene("WinScene"); // loads the menu when you win for now. will be a win screen in the full game.
 
         }
     }
