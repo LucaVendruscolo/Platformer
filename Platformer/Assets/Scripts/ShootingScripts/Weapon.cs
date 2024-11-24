@@ -60,7 +60,6 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
-
         if (pistolShootingSound != null)
         {
             pistolShootingSound.Play();
