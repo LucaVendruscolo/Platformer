@@ -38,7 +38,7 @@ public class Death : MonoBehaviour
             }
 
             debugDeadState.text = "Dead";
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("DeathScene");
         }
     }
 }
