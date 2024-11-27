@@ -5006,9 +5006,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 646993336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cb84c17cf8275644a2df44de4947292, type: 3}
+  m_Script: {fileID: 11500000, guid: 421388e85fbf3fb4aad12eb232fd933f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastScene: 
+  finalScore: 0
+  finalTime: 0
 --- !u!4 &646993338
 Transform:
   m_ObjectHideFlags: 0
