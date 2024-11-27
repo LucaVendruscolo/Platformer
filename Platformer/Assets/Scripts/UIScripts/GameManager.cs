@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public string lastScene = "";       // Tracks the last scene
     public int finalScore = 0;          // For score
     public float finalTime = 0f;        // For timer
+    
 
     private void Awake()
     {

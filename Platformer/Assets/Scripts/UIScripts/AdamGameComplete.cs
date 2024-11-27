@@ -37,6 +37,7 @@ public class AdamGameComplete : MonoBehaviour
         {
             Debug.LogError("No previous scene stored in GameManager!");
         }
+        
     }
 
     public void ReturnToMainMenu()
