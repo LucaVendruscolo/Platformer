@@ -1078,8 +1078,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 473732640}
+  - {fileID: 1544898650}
+  - {fileID: 1981307729}
+  - {fileID: 2144065675}
   - {fileID: 1510493556}
   - {fileID: 1862547051}
+  - {fileID: 1601052457}
+  - {fileID: 1900066206}
   - {fileID: 2018287892}
   - {fileID: 1975636361}
   m_Father: {fileID: 0}
@@ -2556,7 +2561,7 @@ GameObject:
   - component: {fileID: 473732642}
   - component: {fileID: 473732641}
   m_Layer: 0
-  m_Name: FirstCollider
+  m_Name: movementTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2591,7 +2596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialTitle: Movements
   tutorialMessage: WASD to move Forward, Left, Backwards and Right respectively.
-    SPACE to jump and C to crouch
+    SPACE to jump
 --- !u!65 &473732642
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6831,7 +6836,7 @@ GameObject:
   - component: {fileID: 1510493558}
   - component: {fileID: 1510493557}
   m_Layer: 0
-  m_Name: SecondTrigger
+  m_Name: shootTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7059,11 +7064,147 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1642221884320270392, guid: f3585aab07f928a45b81ad26ef806698, type: 3}
   m_PrefabInstance: {fileID: 1422009859}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1544898649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1544898650}
+  - component: {fileID: 1544898652}
+  - component: {fileID: 1544898651}
+  m_Layer: 0
+  m_Name: crouchTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1544898650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544898649}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.71, y: 14.72, z: 1.98}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 163343694}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1544898651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544898649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9122fe99bd70764c8d06de9f987a8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialTitle: Crouch
+  tutorialMessage: Press C to crouch
+--- !u!65 &1544898652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544898649}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 21.86052, y: 9.447876, z: 1.9396086}
+  m_Center: {x: -1.9514999, y: 4.223938, z: -0.4698043}
 --- !u!1 &1597635008 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6911626237369673914, guid: e2ac093d2c94e7745a588fac61f09757, type: 3}
   m_PrefabInstance: {fileID: 1223219085}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1601052456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1601052457}
+  - component: {fileID: 1601052459}
+  - component: {fileID: 1601052458}
+  m_Layer: 0
+  m_Name: powerDashTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1601052457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601052456}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 70.3, y: -46.5, z: 351.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 163343694}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1601052458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601052456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9122fe99bd70764c8d06de9f987a8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialTitle: Dash
+  tutorialMessage: Now try dashing. Jump then press LEFT-CLICK
+--- !u!65 &1601052459
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601052456}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 69.69429, y: 89.31775, z: 1.9344482}
+  m_Center: {x: -59.67356, y: 44.158875, z: 7.890503}
 --- !u!1001 &1617913807
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7444,7 +7585,7 @@ GameObject:
   - component: {fileID: 1862547053}
   - component: {fileID: 1862547052}
   m_Layer: 0
-  m_Name: ThirdCollider
+  m_Name: powerJumpTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7477,11 +7618,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9122fe99bd70764c8d06de9f987a8b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialTitle: Special Target
-  tutorialMessage: 'If you manage to take down special targets, brace yourselves.
-    Some might uncover the hidden, or maybe give you hidden powers. Press RIGHT-CLICK
-    to use given powers.    pro-tip: make sure to use the powers first before shooting
-    another one'
+  tutorialTitle: Blue Power Up
+  tutorialMessage: Shoot the blue to get powers. Remember to use the powers before
+    shooting another one! To use the powers, jump then press LEFT-CLICK
 --- !u!65 &1862547053
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7753,6 +7892,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 318788770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1900066205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1900066206}
+  - component: {fileID: 1900066208}
+  - component: {fileID: 1900066207}
+  m_Layer: 0
+  m_Name: hiddenobjectTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1900066206
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900066205}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 62.2, y: -78, z: 414}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 163343694}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1900066207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900066205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9122fe99bd70764c8d06de9f987a8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialTitle: Hidden Object
+  tutorialMessage: Shoot to reveal hidden secrets
+--- !u!65 &1900066208
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900066205}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.9683075, y: 63.936066, z: 109.91055}
+  m_Center: {x: 1.9841537, y: 82.350204, z: -54.455276}
 --- !u!1 &1908887450
 GameObject:
   m_ObjectHideFlags: 0
@@ -8656,7 +8863,7 @@ GameObject:
   - component: {fileID: 1975636363}
   - component: {fileID: 1975636362}
   m_Layer: 0
-  m_Name: FifthCollision
+  m_Name: finalTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8690,7 +8897,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialTitle: Well Done!
-  tutorialMessage: 'Go down the drain, good job! But always be careful '
+  tutorialMessage: 'Go down the drain, good job! Water will slow you down, but always
+    be careful '
 --- !u!65 &1975636363
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8712,6 +8920,74 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 210.91022, y: 133.83112, z: 31.881813}
   m_Center: {x: 104.95511, y: 66.41556, z: -15.440907}
+--- !u!1 &1981307728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1981307729}
+  - component: {fileID: 1981307731}
+  - component: {fileID: 1981307730}
+  m_Layer: 0
+  m_Name: diveTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1981307729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981307728}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.6, y: 14.2, z: 35.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 163343694}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1981307730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981307728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9122fe99bd70764c8d06de9f987a8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialTitle: Dive
+  tutorialMessage: While Jumping or in the air, press C to dive down faster
+--- !u!65 &1981307731
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981307728}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 20.920578, y: 15.052704, z: 2.4379997}
+  m_Center: {x: -9.960289, y: 7.026352, z: -0.71899986}
 --- !u!1 &1989795861 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8898951231868937773, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
@@ -8757,7 +9033,7 @@ GameObject:
   - component: {fileID: 2018287894}
   - component: {fileID: 2018287893}
   m_Layer: 0
-  m_Name: FourthCollision
+  m_Name: trainTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8791,7 +9067,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialTitle: Hang Tight!
-  tutorialMessage: Have a safe ride ;) Make sure not to fall down
+  tutorialMessage: 'Have a safe ride ;) Jump on the train to ride it. Make sure not
+    to fall down. You''ll die if you hit the red bit at the bottom. '
 --- !u!65 &2018287894
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9140,6 +9417,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135049642}
   m_CullTransparentMesh: 1
+--- !u!1 &2144065672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2144065675}
+  - component: {fileID: 2144065674}
+  - component: {fileID: 2144065673}
+  m_Layer: 0
+  m_Name: slideTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2144065673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144065672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9122fe99bd70764c8d06de9f987a8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialTitle: Slide
+  tutorialMessage: While on the slope, hold down SHIFT to go down faster. This will
+    add momentum for your next jump
+--- !u!65 &2144065674
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144065672}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 23.252426, y: 24.448578, z: 2.45401}
+  m_Center: {x: -11.126213, y: 11.724289, z: 0.727005}
+--- !u!4 &2144065675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144065672}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.661331, y: -1.7990417, z: 72.56205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 163343694}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5390346162737114759
 PrefabInstance:
   m_ObjectHideFlags: 0
