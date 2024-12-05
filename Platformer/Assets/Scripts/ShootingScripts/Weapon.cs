@@ -30,12 +30,15 @@ public class Weapon : MonoBehaviour
     public AudioSource shotgunShootingSound; // shotgun sound
     private int selectedGunID; // Moved selectedGunID to a class-level variable
 
-    
+    public void SetSelectedGunID(int gunID)
+    {
+        selectedGunID = gunID;
+    }
     void Awake()
     {
         playerControls = new PlayerInputActions();
         playerRigidbody = GetComponentInParent<Rigidbody>();  
-        selectedGunID = SettingsManager.LoadSelectedGun(); // selected gun id
+        
         animator = GetComponentInChildren<Animator>();
         if (animator != null)
         {
@@ -195,4 +198,5 @@ public class Weapon : MonoBehaviour
             ApplyPowerUp(hitObject);
         }
     }
+
 }

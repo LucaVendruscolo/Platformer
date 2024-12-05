@@ -66,6 +66,15 @@ public class GunLoader : MonoBehaviour
         {
             // this code is here to stop the gun appearing out of position for a split second.
             currentGun = Instantiate(gunPrefab, transform);
+            var currentWeapon = currentGun.GetComponent<Weapon>();
+            if (currentWeapon != null)
+            {
+                currentWeapon.SetSelectedGunID(selectedGunID);
+            }
+            else
+            {
+                Debug.LogError("Weapon script not found on the instantiated gun prefab.");
+            }
             currentGun.SetActive(false); 
 
             // positions once. 
@@ -86,7 +95,7 @@ public class GunLoader : MonoBehaviour
             currentGun.SetActive(true);
 
             
-            var currentWeapon = currentGun.GetComponent<Weapon>();
+            
             if (currentWeapon != null)
             {
                 currentWeapon.explosionPrefab = explosionPrefab;
