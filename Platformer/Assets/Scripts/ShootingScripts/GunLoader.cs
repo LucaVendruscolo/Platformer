@@ -8,12 +8,35 @@ public class GunLoader : MonoBehaviour
     private GameObject currentGun;  // currently equipped gun.
     private Transform playerCamera;
 
+    private int selectedGunID;  // Tracks the currently selected gun (0 for pistol, 1 for shotgun)
+
     void Start()
     {
         playerCamera = Camera.main.transform;  // the player camera.
+        selectedGunID = SettingsManager.LoadSelectedGun(); // Load the initial gun from settings
         LoadGun();
     }
-    
+
+    void Update()
+    {
+        HandleWeaponSwitch();
+    }
+
+    private void HandleWeaponSwitch() // switch using the scroll wheel
+    {
+        float scrollInput = Input.GetAxis("Mouse ScrollWheel"); 
+
+        if (scrollInput > 0f) 
+        {
+            selectedGunID = (selectedGunID + 1) % 2; 
+            LoadGun();
+        }
+        else if (scrollInput < 0f) 
+        {
+            selectedGunID = (selectedGunID - 1 + 2) % 2; 
+            LoadGun();
+        }
+    }
 
     public void LoadGun()
     {
@@ -22,60 +45,85 @@ public class GunLoader : MonoBehaviour
             Destroy(currentGun);
         }
 
-        int selectedGunID = SettingsManager.LoadSelectedGun();
+        GameObject gunPrefab = null;
+
+        // select default weapon.
         switch (selectedGunID)
         {
-            case 0:  // Pistol
-                currentGun = Instantiate(PistolPrefab, transform);
+            case 0:
+                gunPrefab = PistolPrefab;
                 break;
-            case 1:  // Shotgun
-                currentGun = Instantiate(ShotgunPrefab, transform);
+            case 1:
+                gunPrefab = ShotgunPrefab;
                 break;
             default:
                 Debug.LogWarning("Unknown gun ID: " + selectedGunID);
-                currentGun = Instantiate(PistolPrefab, transform);  // defaults to pistol.
+                gunPrefab = PistolPrefab; // Default to pistol
                 break;
         }
 
-        var gunFollowCamera = currentGun.GetComponent<GunFollowCamera>();
-        if (gunFollowCamera != null)
+        if (gunPrefab != null)
         {
-            gunFollowCamera.cameraTransform = playerCamera;
-        }
+            // this code is here to stop the gun appearing out of position for a split second.
+            currentGun = Instantiate(gunPrefab, transform);
+            currentGun.SetActive(false); 
 
-        var currentWeapon = currentGun.GetComponent<Weapon>();
-        if (currentWeapon != null)
-        {
-            currentWeapon.explosionPrefab = explosionPrefab;
-
-        
-            GameObject canvasObject = GameObject.Find("UICanvasObject");
-            if (canvasObject != null)
+            // positions once. 
+            var gunFollowCamera = currentGun.GetComponent<GunFollowCamera>();
+            if (gunFollowCamera != null)
             {
-                Transform reloadBarTransform = canvasObject.transform.Find("ReloadBar");
-                if (reloadBarTransform != null)
+                gunFollowCamera.cameraTransform = playerCamera;
+
+                
+                gunFollowCamera.transform.rotation = playerCamera.rotation;
+                gunFollowCamera.transform.position = playerCamera.position +
+                                                    playerCamera.forward * gunFollowCamera.offset.z +
+                                                    playerCamera.right * gunFollowCamera.offset.x +
+                                                    playerCamera.up * gunFollowCamera.offset.y;
+            }
+
+            // then activates the gun.
+            currentGun.SetActive(true);
+
+            
+            var currentWeapon = currentGun.GetComponent<Weapon>();
+            if (currentWeapon != null)
+            {
+                currentWeapon.explosionPrefab = explosionPrefab;
+
+                GameObject canvasObject = GameObject.Find("UICanvasObject");
+                if (canvasObject != null)
                 {
-                    var reloadProgressBar = reloadBarTransform.GetComponent<ReloadProgressBar>();
-                    if (reloadProgressBar != null)
+                    Transform reloadBarTransform = canvasObject.transform.Find("ReloadBar");
+                    if (reloadBarTransform != null)
                     {
-                        reloadProgressBar.weapon = currentWeapon;
-                        reloadProgressBar.SubscribeToWeapon();  
+                        var reloadProgressBar = reloadBarTransform.GetComponent<ReloadProgressBar>();
+                        if (reloadProgressBar != null)
+                        {
+                            reloadProgressBar.weapon = currentWeapon;
+                            reloadProgressBar.SubscribeToWeapon();
+                        }
+                        else
+                        {
+                            Debug.LogError("No ReloadProgressBar script found under ReloadBar.");
+                        }
                     }
                     else
                     {
-                        Debug.LogError("no reloadprogressbar script found under reloadbar.");
+                        Debug.LogError("ReloadBar isn't found under UICanvasObject.");
                     }
                 }
                 else
                 {
-                    Debug.LogError("reload bar isn't found under uicanvasobject.");
+                    Debug.LogError("Can't find UICanvasObject.");
                 }
             }
-            else
-            {
-                Debug.LogError("can't find uicanvasobject.");
-            }
         }
-}
+        else
+        {
+            Debug.LogError("No gun prefab assigned for the selectedGunID: " + selectedGunID);
+        }
+    }
+
 
 }

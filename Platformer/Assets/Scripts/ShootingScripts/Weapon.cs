@@ -37,8 +37,11 @@ public class Weapon : MonoBehaviour
         playerRigidbody = GetComponentInParent<Rigidbody>();  
         selectedGunID = SettingsManager.LoadSelectedGun(); // selected gun id
         animator = GetComponentInChildren<Animator>();
-        if (animator == null)
+        if (animator != null)
         {
+            animator.Play("Idle");
+            
+        } else{
             Debug.LogError("no animator found.");
         }
         
@@ -59,6 +62,7 @@ public class Weapon : MonoBehaviour
     private void Fire(InputAction.CallbackContext context)
     {
         // if the weapon is currently reloading, return. 
+        
         if (isReloading)
         {
             return;
