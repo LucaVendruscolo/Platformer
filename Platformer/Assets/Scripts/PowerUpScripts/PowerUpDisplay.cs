@@ -33,7 +33,7 @@ public class PowerUpDisplay : MonoBehaviour
         //Change the color of the text to blue
         //Only if the color is not the shadow color
         if (powerUpText.color != Color.black) {
-            powerUpText.color = Color.blue;
+            powerUpText.color = new Color(32 / 255f, 111 / 255f, 230 / 255f);
         }
 
     }
