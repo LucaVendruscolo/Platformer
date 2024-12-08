@@ -9,6 +9,7 @@ public class ReloadProgressBar : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("ReloadProgressBar Awake : "+ gameObject.GetComponent<Slider>());
         reloadSlider = gameObject.GetComponent<Slider>();
         if (reloadSlider != null)
         {
@@ -38,8 +39,11 @@ public class ReloadProgressBar : MonoBehaviour
 
     private void StartReload(float reloadTime)
     {
+
+        Debug.Log("StartReload called");
         if (reloadSlider != null)
         {
+            Debug.Log("StartReload called with reloadTime : " + reloadTime);
             reloadSlider.gameObject.SetActive(true);
             StartCoroutine(FillReloadBar(reloadTime));
         }

@@ -1,13 +1,14 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PowerUpDisplay : MonoBehaviour
 {
-    private TMP_Text powerUpText;
+    private Text powerUpText;
 
     private void Awake()
     {
-        powerUpText = GetComponent<TMP_Text>();
+        powerUpText = GetComponent<Text>();
     }
 
     private void OnEnable()
@@ -28,16 +29,37 @@ public class PowerUpDisplay : MonoBehaviour
     private void PowerUpEventManager_DisplayJumpPowerUp()
     {
         powerUpText.text = "Jump";
+
+        //Change the color of the text to blue
+        //Only if the color is not the shadow color
+        if (powerUpText.color != Color.black) {
+            powerUpText.color = Color.blue;
+        }
+
     }
 
     private void PowerUpEventManager_DisplayDashPowerUp()
     {
         powerUpText.text = "Dash";
+
+        //Change the color of the text to green
+        //Only if the color is not the shadow color
+        if (powerUpText.color != Color.black)
+        {
+            powerUpText.color = Color.green;
+        }
+       
     }
 
     private void PowerUpEventManager_RemoveDisplayPowerUp()
     {
         powerUpText.text = "No Power";
+        //Change the color of the text to white
+        //Only if the color is not the shadow color
+        if (powerUpText.color != Color.black)
+        {
+            powerUpText.color = Color.white;
+        }
     }
 
 

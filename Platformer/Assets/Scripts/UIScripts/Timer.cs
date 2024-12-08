@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 
 //Code inspired by - https://www.youtube.com/watch?v=DH2ZxwRBwwg
 public class Timer : MonoBehaviour
 {
-    private TMP_Text _timerText;
+    private Text _timerText;
     enum TimerType {Countdown, Stopwatch}
     [SerializeField] private TimerType timerType;
 
@@ -18,7 +19,7 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
-        _timerText = GetComponent<TMP_Text>();
+        _timerText = GetComponent<Text>();
     }
 
     private void OnEnable()

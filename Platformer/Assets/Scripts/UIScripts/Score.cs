@@ -1,15 +1,16 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    private TMP_Text scoreText;
+    private Text scoreText;
     private int score = 0;
 
     private void Awake()
     {
-        scoreText = GetComponent<TMP_Text>();
+        scoreText = GetComponent<Text>();
     }
 
     private void OnEnable()
