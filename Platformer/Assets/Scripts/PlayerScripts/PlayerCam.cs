@@ -69,11 +69,7 @@ public class PlayerCam : MonoBehaviour
         // Debug log to trace mouse input values
         mouseInput = pc.look.ReadValue<Vector2>();
 
-        // Ensure mouse input values are within a reasonable range
-        if (mouseInput.x > 100 || mouseInput.y > 100 || mouseInput.x < -100 || mouseInput.y < -100)
-        {
-            return;
-        }
+       
         //Get mouse input
         float mouseX = mouseInput.x * Time.deltaTime * sensX;
         float mouseY = mouseInput.y * Time.deltaTime * sensY;

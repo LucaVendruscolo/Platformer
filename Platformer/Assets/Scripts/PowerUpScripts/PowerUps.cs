@@ -71,6 +71,9 @@ public class PowerUps : MonoBehaviour
         //Apply Jump Force
         rb.AddForce(Vector3.up * jumpPowerUpForce, ForceMode.Impulse);
         hasJumpPowerUp = false;
+
+        FindAnyObjectByType<AudioManager>().Play("JumpPowerSound");
+
         PowerUpEventManager.OnRemoveDisplayPowerUp();
     }
 
@@ -94,6 +97,8 @@ public class PowerUps : MonoBehaviour
         //Apply Dash Force
         rb.AddForce(pm.orientation.forward * dashPowerUpForce, ForceMode.Impulse);
         Invoke(nameof(ResetGravity), dashDuration);
+
+        FindAnyObjectByType<AudioManager>().Play("DashPowerSound");
 
 
         Debug.Log("Use Dash Power Up");

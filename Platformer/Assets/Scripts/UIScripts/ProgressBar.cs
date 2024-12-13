@@ -34,7 +34,7 @@ public class ProgressBar : MonoBehaviour
         if (slider.value <= 0)
         {
             // Player is dead
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("DeathScene");
             Debug.Log("Player is dead");
         }
         else if (slider.value <= 0.3 && !hasSpawnedEnergy)
