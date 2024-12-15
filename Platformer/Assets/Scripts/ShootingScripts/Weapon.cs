@@ -26,8 +26,6 @@ public class Weapon : MonoBehaviour
 
     private Animator animator; // recoil animation
     public ParticleSystem muzzleFlash; // muzzle flash effect
-    public AudioSource pistolShootingSound; // pistol sound
-    public AudioSource shotgunShootingSound; // shotgun sound
     private int selectedGunID; // Moved selectedGunID to a class-level variable
 
     public void SetSelectedGunID(int gunID)
@@ -70,11 +68,11 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
-        if (pistolShootingSound != null && selectedGunID == 0)
+        if (selectedGunID == 0)
         {
-            pistolShootingSound.Play();
-        } else if (shotgunShootingSound != null && selectedGunID == 1){
-            shotgunShootingSound.Play();
+            FindAnyObjectByType<AudioManager>().Play("PistolShootSound");
+        } else if (selectedGunID == 1){
+            FindAnyObjectByType<AudioManager>().Play("ShotgunShootSound");
         } 
         else {
             Debug.Log("sound effect NOT playing.");

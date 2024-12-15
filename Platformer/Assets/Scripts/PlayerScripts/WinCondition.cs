@@ -20,9 +20,8 @@ public class WinCondition : MonoBehaviour
                 GameManager.Instance.finalTime = FindObjectOfType<Timer>().GetCurrentTime();
                 GameManager.Instance.lastScene = SceneManager.GetActiveScene().name; 
             }
-            //winUI.SetActive(true);
-            SceneManager.LoadScene("WinScene"); // loads the menu when you win for now. will be a win screen in the full game.
 
+            SceneManager.LoadScene("WinScene"); // loads the menu when you win for now. will be a win screen in the full game.
         }
     }
 }
