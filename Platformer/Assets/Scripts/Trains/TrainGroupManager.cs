@@ -3,24 +3,38 @@ using UnityEngine.AI;
 
 public class TrainGroupManager : MonoBehaviour
 {
-    private bool trainsMoving = false; 
+    private bool trainsMoving = false;
+    public string destroyTrainTag = "TrainDestroyer"; 
 
-    // this will start all the trains in the group.
     public void ActivateAllTrains()
     {
-        if (!trainsMoving) 
+        if (!trainsMoving)
         {
-            foreach (Transform child in transform) // goes through each child train to start it.
+            foreach (Transform child in transform) 
             {
                 NavMeshAgent childAgent = child.GetComponent<NavMeshAgent>();
                 if (childAgent != null)
                 {
-                    childAgent.enabled = true; // start the train
+                    childAgent.enabled = true;
+                }
+
+                TrainCollider trainCollider = child.GetComponent<TrainCollider>();
+                if (trainCollider == null)
+                {
+                    trainCollider = child.gameObject.AddComponent<TrainCollider>();
+                }
+
+                trainCollider.destroyTrainTag = destroyTrainTag;
+
+                Collider childCollider = child.GetComponent<Collider>();
+                if (childCollider == null)
+                {
+                    childCollider = child.gameObject.AddComponent<BoxCollider>();
+                    childCollider.isTrigger = true; 
                 }
             }
 
-            trainsMoving = true; 
-            
+            trainsMoving = true;
         }
     }
 }

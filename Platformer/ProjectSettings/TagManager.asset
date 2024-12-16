@@ -14,6 +14,7 @@ TagManager:
   - hitbox
   - bullet
   - powerup
+  - TrainDestroyer
   layers:
   - Default
   - TransparentFX
