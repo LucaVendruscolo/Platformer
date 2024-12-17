@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Water : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class Water : MonoBehaviour
     public LayerMask whatIsWater;
     private Rigidbody rb;
     private PlayerMovement pm;
+    public GameObject waterFX;
+    public GameObject bubbleFX;
 
     [Header("Movement")]
     public float waterGroundDrag;
@@ -19,6 +22,11 @@ public class Water : MonoBehaviour
     private float groundDrag;
 
     private int waterCounter = 0;
+
+    [Header("Water SFX")]
+    private float fxTransitionTimer = 1f;
+    private float startingWeight = 0f;
+    private float goalWeight = 1f;
 
     private void Start()
     {
@@ -41,6 +49,10 @@ public class Water : MonoBehaviour
             //It should not be applied multiple times with different water triggers
             if (waterCounter == 1)
             {
+                //Apply water effects
+                applyWaterFX();
+
+
                 Vector3 dragVel = transform.InverseTransformDirection(rb.velocity);
                 //Applying drag to y axis, only downward drag
                 //Applying downwards drag the moment the player enters the water
@@ -67,6 +79,7 @@ public class Water : MonoBehaviour
             waterCounter--;
             if (waterCounter == 0)
             {
+                removeWaterFX();
                 pm.inWater = false;
             }
             Debug.Log("We have left the water");
@@ -136,5 +149,27 @@ public class Water : MonoBehaviour
         pm.airDrag = airDrag;
         pm.groundDrag = groundDrag;
         Physics.gravity = new Vector3(0, defaultGravity, 0);
+    }
+
+
+    private void applyWaterFX() {
+        waterFX.SetActive(true);
+        bubbleFX.SetActive(true);
+
+        float elapsedTime = 0f;
+
+        PostProcessVolume volume = waterFX.GetComponent<PostProcessVolume>();
+        while (elapsedTime < fxTransitionTimer)
+        {
+            // Gradually adjust the weight
+            volume.weight = Mathf.Lerp(startingWeight, goalWeight, elapsedTime / fxTransitionTimer);
+            elapsedTime += Time.deltaTime;
+        }
+    }
+
+    private void removeWaterFX()
+    {
+        waterFX.SetActive(false);
+        bubbleFX.SetActive(false);
     }
 }
