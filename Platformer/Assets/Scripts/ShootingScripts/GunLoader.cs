@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GunLoader : MonoBehaviour
@@ -10,6 +11,12 @@ public class GunLoader : MonoBehaviour
 
     private int selectedGunID;  // Tracks the currently selected gun (0 for pistol, 1 for shotgun)
 
+    // Centralized reload state
+    private bool isReloading = false;
+    private float reloadTime;
+    private float reloadTimer;
+    public event Action<float> OnReloadStart;
+
     void Start()
     {
         playerCamera = Camera.main.transform;  // the player camera.
@@ -20,8 +27,10 @@ public class GunLoader : MonoBehaviour
     void Update()
     {
         HandleWeaponSwitch();
+        HandleReloadTimer();
     }
 
+    
     private void HandleWeaponSwitch() // switch using the scroll wheel
     {
         float scrollInput = Input.GetAxis("Mouse ScrollWheel"); 
@@ -70,6 +79,10 @@ public class GunLoader : MonoBehaviour
             if (currentWeapon != null)
             {
                 currentWeapon.SetSelectedGunID(selectedGunID);
+
+                // Pass the reload state to the weapon
+                currentWeapon.SetReloadCallback(StartReload, CanShoot);
+                reloadTime = currentWeapon.reloadTime; // Update reload time
             }
             else
             {
@@ -83,7 +96,6 @@ public class GunLoader : MonoBehaviour
             {
                 gunFollowCamera.cameraTransform = playerCamera;
 
-                
                 gunFollowCamera.transform.rotation = playerCamera.rotation;
                 gunFollowCamera.transform.position = playerCamera.position +
                                                     playerCamera.forward * gunFollowCamera.offset.z +
@@ -94,10 +106,8 @@ public class GunLoader : MonoBehaviour
             // then activates the gun.
             currentGun.SetActive(true);
 
-            
-            
             if (currentWeapon != null)
-            {
+            {   
                 currentWeapon.explosionPrefab = explosionPrefab;
 
                 GameObject canvasObject = GameObject.Find("UICanvasObject");
@@ -109,8 +119,8 @@ public class GunLoader : MonoBehaviour
                         var reloadProgressBar = reloadBarTransform.GetComponent<ReloadProgressBar>();
                         if (reloadProgressBar != null)
                         {
-                            reloadProgressBar.weapon = currentWeapon;
-                            reloadProgressBar.SubscribeToWeapon();
+                            reloadProgressBar.gunLoader = this; 
+                            reloadProgressBar.SubscribeToGunLoader(); 
                         }
                         else
                         {
@@ -134,5 +144,36 @@ public class GunLoader : MonoBehaviour
         }
     }
 
+    private void HandleReloadTimer()
+    {
+        if (isReloading)
+        {
+            reloadTimer -= Time.deltaTime;
+            if (reloadTimer <= 0f)
+            {
+                isReloading = false;
+                Debug.Log("Reload complete.");
+            }
+        }
+    }
 
+    // Centralized reload logic
+    public bool CanShoot()
+    {
+        return !isReloading;
+    }
+
+    public void StartReload()
+{
+    if (!isReloading)
+    {
+        isReloading = true;
+        reloadTimer = reloadTime;
+
+        // Trigger the reload start event
+        OnReloadStart?.Invoke(reloadTime);
+
+        Debug.Log("Reload started.");
+    }
+}
 }

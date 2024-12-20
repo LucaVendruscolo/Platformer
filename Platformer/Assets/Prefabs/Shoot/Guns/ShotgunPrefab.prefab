@@ -5035,7 +5035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpawn: {fileID: 8348897590731386064}
-  range: 100
+  range: 1000
   damage: 20
   bulletCount: 5
   spreadAngle: 15
