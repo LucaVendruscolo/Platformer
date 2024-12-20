@@ -120,7 +120,7 @@ public class Weapon : MonoBehaviour
             ApplyKnockback();
         }
 
-        // Handle bullet spread and raycasting
+        // handle shooting spread and raycasts.
         for (int i = 0; i < bulletCount; i++)
         {
             Quaternion spreadRotation = Quaternion.Euler(
@@ -129,11 +129,29 @@ public class Weapon : MonoBehaviour
                 0);
 
             Vector3 direction = spreadRotation * bulletSpawn.forward;
+            Vector3 currentPosition = bulletSpawn.position;
+            float remainingRange = range;
+            bool hitSomething = false;
 
-            if (Physics.Raycast(bulletSpawn.position, direction, out RaycastHit hit, range))
+            while (!hitSomething && remainingRange > 0f)
             {
-                HandleHit(hit);
-                CreateExplosionEffect(hit.point); // Explosion effect
+                if (Physics.Raycast(currentPosition, direction, out RaycastHit hit, remainingRange))
+                {
+                    if (hit.collider.CompareTag("water"))
+                    {
+                        remainingRange -= hit.distance;
+                        currentPosition = hit.point + direction * 0.01f; 
+                        continue; 
+                    }
+
+                    HandleHit(hit);
+                    CreateExplosionEffect(hit.point); // Explosion effect
+                    hitSomething = true; 
+                }
+                else
+                {
+                    break;
+                }
             }
         }
     }
