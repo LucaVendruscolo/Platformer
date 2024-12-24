@@ -48,6 +48,9 @@ public class ProgressBar : MonoBehaviour
         {
             hasSpawnedEnergy = false;
         }
+
+        //Adjust Post Processing effects based on health
+        PostProcessingManager.OnPostProcessingUpdate(slider.value);
     }
 
 
