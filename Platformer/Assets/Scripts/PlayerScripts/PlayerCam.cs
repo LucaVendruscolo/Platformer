@@ -40,6 +40,11 @@ public class PlayerCam : MonoBehaviour
         sensX = PlayerPrefs.GetFloat("Sensitivity", 2.0f); // 2.0f is a default value
         sensY = sensX; // Assuming both axes use the same sensitivity
 
+        // Set initial camera direction based on current rotation
+        Vector3 initialRotation = transform.eulerAngles;
+        xRotation = initialRotation.x;
+        yRotation = initialRotation.y;
+
         // Start the coroutine to delay input processing
         //This prevents the camera from moving whilst the game is loading
         StartCoroutine(DelayInputProcessing());
