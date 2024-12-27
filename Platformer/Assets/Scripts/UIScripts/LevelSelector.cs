@@ -21,5 +21,6 @@ public class LevelSelector : MonoBehaviour
     public void SelectDifficulty(){
         Debug.Log(levelName);
         SceneManager.LoadScene(levelName);
+        
     }
 }
