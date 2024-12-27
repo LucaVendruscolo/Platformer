@@ -4,10 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public TMP_Text motivationalMessageText; // Assign this in the Inspector
-    public Canvas mainMenuCanvas;            // Reference to the Main Menu canvas
-    public Canvas optionsCanvas;             // Reference to the Options canvas
+    public TMP_Text motivationalMessageText; 
+    public Canvas mainMenuCanvas;         
+    public Canvas optionsCanvas;             
     public Canvas levelCanvas;
+    public Canvas difficultyCanvas;
 
     void Start()
     {
@@ -39,6 +40,10 @@ public class MainMenu : MonoBehaviour
     {
         mainMenuCanvas.gameObject.SetActive(false); 
         levelCanvas.gameObject.SetActive(true);  
+    }
+    public void ShowLevel_frm_diff(){
+        difficultyCanvas.gameObject.SetActive(false);
+        levelCanvas.gameObject.SetActive(true);
     }
     public void ShowMainMenu()
     {
