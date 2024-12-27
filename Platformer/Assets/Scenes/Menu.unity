@@ -5094,8 +5094,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1325577884}
-        m_TargetAssemblyTypeName: Difficulty, Assembly-CSharp
+      - m_Target: {fileID: 1325577881}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
         m_MethodName: SelectDifficulty
         m_Mode: 1
         m_Arguments:
