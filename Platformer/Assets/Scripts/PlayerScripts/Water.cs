@@ -38,6 +38,14 @@ public class Water : MonoBehaviour
         airDrag = pm.airDrag;
         groundDrag = pm.groundDrag;
         waterCounter = 0;
+
+
+        // Ensure the bubbleFX particle system is playing but not visible
+        var bubbleRenderer = bubbleFX.GetComponent<ParticleSystemRenderer>();
+        if (bubbleRenderer != null)
+        {
+            bubbleRenderer.enabled = false;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -154,7 +162,13 @@ public class Water : MonoBehaviour
 
     private void applyWaterFX() {
         waterFX.SetActive(true);
-        bubbleFX.SetActive(true);
+
+        // Enable the bubbleFX renderer to make bubbles visible
+        var bubbleRenderer = bubbleFX.GetComponent<ParticleSystemRenderer>();
+        if (bubbleRenderer != null)
+        {
+            bubbleRenderer.enabled = true;
+        }
 
         float elapsedTime = 0f;
 
@@ -170,6 +184,12 @@ public class Water : MonoBehaviour
     private void removeWaterFX()
     {
         waterFX.SetActive(false);
-        bubbleFX.SetActive(false);
+
+        // Disable the bubbleFX renderer to make bubbles invisible
+        var bubbleRenderer = bubbleFX.GetComponent<ParticleSystemRenderer>();
+        if (bubbleRenderer != null)
+        {
+            bubbleRenderer.enabled = false;
+        }
     }
 }

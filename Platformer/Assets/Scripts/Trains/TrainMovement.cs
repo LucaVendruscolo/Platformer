@@ -22,7 +22,7 @@ public class TrainMovement : MonoBehaviour
         trainSpeed = Random.Range(minTrainSpeed, maxTrainSpeed);
         agent.speed = trainSpeed;
 
-        Debug.Log($"Train speed set to {trainSpeed} (Range: {minTrainSpeed}-{maxTrainSpeed}) for difficulty: {LevelSelector.selectedDifficulty}");
+        //Debug.Log($"Train speed set to {trainSpeed} (Range: {minTrainSpeed}-{maxTrainSpeed}) for difficulty: {LevelSelector.selectedDifficulty}");
     }
 
     private void AdjustSpeedForDifficulty()

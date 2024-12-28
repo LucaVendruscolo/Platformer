@@ -10,7 +10,6 @@ public class SpawnRandomiser : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("Awake");
         wayPointObject.transform.position = selectRandomSpawnPoint();
     }
 
@@ -20,7 +19,7 @@ public class SpawnRandomiser : MonoBehaviour
         BoxCollider boxCollider = spawnZone.GetComponent<BoxCollider>();
         if (boxCollider == null)
         {
-            Debug.Log("Collider could not be found");
+            //Debug.Log("Collider could not be found");
             return transform.position;
         }
 
@@ -28,13 +27,13 @@ public class SpawnRandomiser : MonoBehaviour
         Vector3 size = boxCollider.size;
 
         float randomX = UnityEngine.Random.Range(center.x - size.x / 2, center.x + size.x / 2);
-        Debug.Log("Random X: " + randomX);
+        //Debug.Log("Random X: " + randomX);
         float randomY = center.y;
         float randomZ = UnityEngine.Random.Range(center.z - size.z / 2, center.z + size.z / 2);
-        Debug.Log("Random Z: " + randomZ);
+        //Debug.Log("Random Z: " + randomZ);
 
         Vector3 randomPosition = new Vector3(randomX, randomY, randomZ);
-        Debug.Log("Random Position: " + randomPosition);
+        //Debug.Log("Random Position: " + randomPosition);
 
         return randomPosition;
     }

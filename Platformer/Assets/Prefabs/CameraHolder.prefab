@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 7734826417069294877}
   - component: {fileID: 5763064867727506611}
   - component: {fileID: 4977449473601308606}
+  - component: {fileID: 4413560761355194232}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: MainCamera
@@ -243,3 +244,16 @@ MonoBehaviour:
   fovAdditiveMultiplier: 0.2
   minFov: 90
   maxFov: 120
+--- !u!114 &4413560761355194232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305479378026286844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e5f756a93173f4194596b1e34d9a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 6305479378026286844}
