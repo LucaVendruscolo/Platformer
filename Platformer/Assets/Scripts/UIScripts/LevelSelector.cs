@@ -10,6 +10,14 @@ public class LevelSelector : MonoBehaviour
     public Canvas difficultyCanvas;             
     public Canvas levelCanvas;
     public static string levelName;
+
+    public static Difficulty selectedDifficulty; 
+    public enum Difficulty
+    {
+        Easy,
+        Medium,
+        Hard
+    }
     public void OpenLevel(int levelId){
         levelName = "Level " + levelId; //when selecting level from level menu, this will
         //remember the level (scene) name
@@ -18,9 +26,11 @@ public class LevelSelector : MonoBehaviour
         difficultyCanvas.gameObject.SetActive(true);  
         Debug.Log(levelName + " selected");
     }
-    public void SelectDifficulty(){
-        Debug.Log(levelName);
+    public void SelectDifficulty(int difficulty)
+    {
+        // set difficulty level
+        selectedDifficulty = (Difficulty)difficulty;
+        Debug.Log($"Difficulty selected: {selectedDifficulty}");
         SceneManager.LoadScene(levelName);
-        
     }
 }

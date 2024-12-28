@@ -869,7 +869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b8796c4eb55b47458a47ad7040acb23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  gunLoader: {fileID: 0}
 --- !u!1 &3649153879436180356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,4 +1942,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09bb3b886200064fafd2f0fa3e05a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barRemoveSpeed: 0.1
+  baseBarRemoveSpeed: 0.1

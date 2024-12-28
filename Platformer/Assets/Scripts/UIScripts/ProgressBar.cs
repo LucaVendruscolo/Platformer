@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 public class ProgressBar : MonoBehaviour
 {
     private Slider slider;
-    public float barRemoveSpeed = 1f;
+    public float baseBarRemoveSpeed = 0.1f; 
+    private float barRemoveSpeed; // depletion speed that is changed via difficulty.
     private bool _isRunning;
     private bool hasSpawnedEnergy = false;
 
@@ -25,6 +26,7 @@ public class ProgressBar : MonoBehaviour
     private void Awake()
     {
         slider = gameObject.GetComponent<Slider>();
+        AdjustSpeedForDifficulty(); // adjusts speed based on difficulty.
     }
 
     void Update()
@@ -56,4 +58,26 @@ public class ProgressBar : MonoBehaviour
 
     // Reset the player's health
     private void BarEventManager_SliderReset() => slider.value = slider.maxValue;
+
+    // change health depletion speed basedon difficulty.
+    private void AdjustSpeedForDifficulty()
+    {
+        switch (LevelSelector.selectedDifficulty)
+        {
+            case LevelSelector.Difficulty.Easy:
+                barRemoveSpeed = baseBarRemoveSpeed * 0.5f; // easy speed.
+                break;
+            case LevelSelector.Difficulty.Medium:
+                barRemoveSpeed = baseBarRemoveSpeed; // normal speed.
+                break;
+            case LevelSelector.Difficulty.Hard:
+                barRemoveSpeed = baseBarRemoveSpeed * 1.5f; // hard speed.
+                break;
+            default:
+                Debug.LogWarning("invalid difficulty level, selecting medium health depletion speed.");
+                barRemoveSpeed = baseBarRemoveSpeed;
+                break;
+        }
+        Debug.Log($"Health depletion speed set to {barRemoveSpeed} based on difficulty {LevelSelector.selectedDifficulty}");
+    }
 }
