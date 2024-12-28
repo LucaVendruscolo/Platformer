@@ -5,45 +5,41 @@ using UnityEngine.UI;
 public class ReloadProgressBar : MonoBehaviour
 {
     private Slider reloadSlider;
-    public Weapon weapon; 
+    public GunLoader gunLoader; // Reference to GunLoader instead of Weapon
 
     private void Awake()
     {
-        Debug.Log("ReloadProgressBar Awake : "+ gameObject.GetComponent<Slider>());
         reloadSlider = gameObject.GetComponent<Slider>();
         if (reloadSlider != null)
         {
-            reloadSlider.gameObject.SetActive(false);  
+            reloadSlider.gameObject.SetActive(false); // Hide slider initially
         }
     }
 
     private void OnEnable()
     {
-        if (weapon != null)
+        if (gunLoader != null)
         {
-            weapon.OnReloadStart += StartReload;
+            gunLoader.OnReloadStart += StartReload;
         }
         else
         {
-            Debug.LogError("weapon reference null in reloadprogressbar.");
+            Debug.LogError("GunLoader reference is null in ReloadProgressBar.");
         }
     }
 
     private void OnDisable()
     {
-        if (weapon != null)
+        if (gunLoader != null)
         {
-            weapon.OnReloadStart -= StartReload;
+            gunLoader.OnReloadStart -= StartReload;
         }
     }
 
     private void StartReload(float reloadTime)
     {
-
-        Debug.Log("StartReload called");
         if (reloadSlider != null)
         {
-            Debug.Log("StartReload called with reloadTime : " + reloadTime);
             reloadSlider.gameObject.SetActive(true);
             StartCoroutine(FillReloadBar(reloadTime));
         }
@@ -62,19 +58,18 @@ public class ReloadProgressBar : MonoBehaviour
         }
 
         reloadSlider.value = 1f;
-        reloadSlider.gameObject.SetActive(false); 
+        reloadSlider.gameObject.SetActive(false); // Hide slider after filling
     }
 
-    public void SubscribeToWeapon()
+    public void SubscribeToGunLoader()
     {
-        if (weapon != null)
+        if (gunLoader != null)
         {
-            weapon.OnReloadStart += StartReload;
+            gunLoader.OnReloadStart += StartReload;
         }
         else
         {
-            Debug.LogError("Weapon reference null in reloadprogressbar.cs");
+            Debug.LogError("GunLoader reference is null in ReloadProgressBar.cs");
         }
     }
-
 }

@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 public class Weapon : MonoBehaviour
 {
     public Transform bulletSpawn;
-    public float range = 100f;      
-    public float damage = 20f;          
-    public int bulletCount = 5;               
-    public float spreadAngle = 15f;           
+    public float range = 100f;
+    public float damage = 20f;
+    public int bulletCount = 5;
+    public float spreadAngle = 15f;
 
     private PlayerInputActions playerControls;
     private InputAction fire;
@@ -17,35 +17,44 @@ public class Weapon : MonoBehaviour
     public float explosionDuration = 0.1f;
     public float explosionScale = 0.5f;
 
-    public float knockbackStrength = 50f;      
-    private Rigidbody playerRigidbody;         // for knocking the player back (shotgun)
+    public float knockbackStrength = 50f;
+    private Rigidbody playerRigidbody; // For knocking the player back (shotgun)
 
-    public float reloadTime = 1.5f;            
-    private bool isReloading = false;         
-    public event Action<float> OnReloadStart;
+    public float reloadTime = 1.5f; // Passed to GunLoader
+    private Animator animator; // Recoil animation
+    public ParticleSystem muzzleFlash; // Muzzle flash effect
+    private int selectedGunID; // Tracks the gun type (0 for pistol, 1 for shotgun)
 
-    private Animator animator; // recoil animation
-    public ParticleSystem muzzleFlash; // muzzle flash effect
-    private int selectedGunID; // Moved selectedGunID to a class-level variable
+    private Func<bool> canShootCallback; // Callback to check if reloading is allowed
+    private Action startReloadCallback; // Callback to start reload in GunLoader
 
+    // Setter for the selected gun ID
     public void SetSelectedGunID(int gunID)
     {
         selectedGunID = gunID;
     }
+
+    // Setter for reload callbacks from GunLoader
+    public void SetReloadCallback(Action startReload, Func<bool> canShoot)
+    {
+        startReloadCallback = startReload;
+        canShootCallback = canShoot;
+    }
+
     void Awake()
     {
         playerControls = new PlayerInputActions();
-        playerRigidbody = GetComponentInParent<Rigidbody>();  
-        
+        playerRigidbody = GetComponentInParent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
+
         if (animator != null)
         {
             animator.Play("Idle");
-            
-        } else{
-            Debug.LogError("no animator found.");
         }
-        
+        else
+        {
+            Debug.LogError("No animator found.");
+        }
     }
 
     private void OnEnable()
@@ -62,67 +71,89 @@ public class Weapon : MonoBehaviour
 
     private void Fire(InputAction.CallbackContext context)
     {
-        // if the weapon is currently reloading, return. 
-        
-        if (isReloading)
+        // Check centralized reload state
+        if (canShootCallback != null && !canShootCallback() && selectedGunID == 1)
         {
+            Debug.Log("Can't shoot, still reloading.");
             return;
         }
+
+        // Play appropriate shooting sound
         if (selectedGunID == 0)
         {
             FindAnyObjectByType<AudioManager>().Play("PistolShootSound");
-        } else if (selectedGunID == 1){
+        }
+        else if (selectedGunID == 1)
+        {
             FindAnyObjectByType<AudioManager>().Play("ShotgunShootSound");
-        } 
-        else {
-            Debug.Log("sound effect NOT playing.");
+        }
+        else
+        {
+            Debug.Log("Sound effect NOT playing.");
         }
 
-        if (animator != null) 
+        // Trigger shooting animation
+        if (animator != null)
         {
             animator.SetTrigger("Shoot");
-        } else {
+        }
+        else
+        {
             Debug.Log("Animator is null!!!");
         }
 
+        // Play muzzle flash
         if (muzzleFlash != null)
         {
             muzzleFlash.Play();
         }
 
-        // start reload process.
-        StartCoroutine(Reload());
+        // Start reload via GunLoader
+        if (startReloadCallback != null)
+        {
+            startReloadCallback();
+        }
 
-        // knockback (only on shotgun)
+        // Apply knockback for shotgun
         if (spreadAngle > 0 && playerRigidbody != null)
         {
             ApplyKnockback();
         }
 
-        for (int i = 0; i < bulletCount; i++) // applies bullets.
+        // handle shooting spread and raycasts.
+        for (int i = 0; i < bulletCount; i++)
         {
             Quaternion spreadRotation = Quaternion.Euler(
-                UnityEngine.Random.Range(-spreadAngle, spreadAngle),  
-                UnityEngine.Random.Range(-spreadAngle, spreadAngle),  
-                0);                                       
+                UnityEngine.Random.Range(-spreadAngle, spreadAngle),
+                UnityEngine.Random.Range(-spreadAngle, spreadAngle),
+                0);
 
             Vector3 direction = spreadRotation * bulletSpawn.forward;
+            Vector3 currentPosition = bulletSpawn.position;
+            float remainingRange = range;
+            bool hitSomething = false;
 
-            if (Physics.Raycast(bulletSpawn.position, direction, out RaycastHit hit, range))
+            while (!hitSomething && remainingRange > 0f)
             {
-                HandleHit(hit);
-                CreateExplosionEffect(hit.point);  // explosion effect.
+                if (Physics.Raycast(currentPosition, direction, out RaycastHit hit, remainingRange))
+                {
+                    if (hit.collider.CompareTag("water"))
+                    {
+                        remainingRange -= hit.distance;
+                        currentPosition = hit.point + direction * 0.01f; 
+                        continue; 
+                    }
+
+                    HandleHit(hit);
+                    CreateExplosionEffect(hit.point); // Explosion effect
+                    hitSomething = true; 
+                }
+                else
+                {
+                    break;
+                }
             }
         }
-    }
-
-    private IEnumerator Reload()
-    {
-        isReloading = true; 
-        OnReloadStart?.Invoke(reloadTime);
-        yield return new WaitForSeconds(reloadTime); 
-        isReloading = false;  
-
     }
 
     private void ApplyKnockback()
@@ -131,33 +162,17 @@ public class Weapon : MonoBehaviour
         playerRigidbody.AddForce(knockbackDirection * knockbackStrength, ForceMode.Impulse);
     }
 
-    private void ApplyPowerUp(GameObject powerUpObject)
-    {
-        PowerUpCollision powerUp = powerUpObject.GetComponent<PowerUpCollision>();
-
-        if (powerUp != null)
-        {
-            powerUp.ActivatePowerUp();  
-            Destroy(powerUpObject);      
-        }
-    }
-
     private void CreateExplosionEffect(Vector3 position)
     {
         if (muzzleFlash != null)
         {
-            
             ParticleSystem explosionEffect = Instantiate(muzzleFlash, position, Quaternion.identity);
-
-
             explosionEffect.Play();
-
-
             Destroy(explosionEffect.gameObject, explosionEffect.main.duration);
         }
         else
         {
-            Debug.LogError("no particle system.");
+            Debug.LogError("No particle system assigned.");
         }
     }
 
@@ -168,7 +183,7 @@ public class Weapon : MonoBehaviour
         if (hitObject.CompareTag("enemy"))
         {
             print("Hit " + hitObject.name + "!");
-            Destroy(hitObject);  
+            Destroy(hitObject);
             BarEventManager.OnSliderReset();
             ScoreEventManager.OnScoreIncrement();
         }
@@ -177,7 +192,7 @@ public class Weapon : MonoBehaviour
             SecretTrigger secretTrigger = hitObject.GetComponent<SecretTrigger>();
             if (secretTrigger != null)
             {
-                Destroy(hitObject);  
+                Destroy(hitObject);
                 secretTrigger.OnTargetHit();
             }
         }
@@ -197,4 +212,13 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    private void ApplyPowerUp(GameObject powerUpObject)
+    {
+        PowerUpCollision powerUp = powerUpObject.GetComponent<PowerUpCollision>();
+        if (powerUp != null)
+        {
+            powerUp.ActivatePowerUp();
+            Destroy(powerUpObject);
+        }
+    }
 }

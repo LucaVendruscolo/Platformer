@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 369305721275833866}
   - component: {fileID: 2415103562966845528}
   - component: {fileID: 6665249440629726910}
+  - component: {fileID: -7298779647202631806}
   m_Layer: 10
   m_Name: New_Train
   m_TagString: Train
@@ -350,3 +351,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7298779647202631806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5985427549992201705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e76858c19dd406349bb7f9c722465e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trainColours:
+  - {fileID: 2100000, guid: d45e2f4418ee73a4ba2b09fee72f350d, type: 2}
+  - {fileID: 2100000, guid: 4e0f2ab01b2e133438a0afced20a1a11, type: 2}
+  - {fileID: 2100000, guid: 7994fe64a84d4a44eab6727ed90d51bd, type: 2}
+  - {fileID: 2100000, guid: 3d7b784531e623c499f7716680ca5f8c, type: 2}
+  - {fileID: 2100000, guid: f373759a12dbd5a4a8779c5896fa22ae, type: 2}
+  train: {fileID: 5985427549992201705}

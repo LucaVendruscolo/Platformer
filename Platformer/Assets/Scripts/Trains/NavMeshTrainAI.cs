@@ -4,8 +4,10 @@ using UnityEngine.AI;
 public class NavMeshTrainAI : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private Transform target;
+    [SerializeField] private Transform[] target;
     private TrainGroupManager groupManager; // the train's group
+    private int targetIndex = 0;
+    private const float targetReachedThreshold = 15.0f; 
 
     private void Start()
     {
@@ -14,6 +16,7 @@ public class NavMeshTrainAI : MonoBehaviour
         {
             agent.enabled = false;
         }
+        targetIndex = 0;
 
         // find the train's group manager
         groupManager = GetComponentInParent<TrainGroupManager>();
@@ -23,7 +26,16 @@ public class NavMeshTrainAI : MonoBehaviour
     {
         if (agent != null && agent.enabled && target != null)
         {
-            agent.SetDestination(target.position); // navmesh moving towards the target.
+            agent.SetDestination(target[targetIndex].position); // navmesh moving towards the target.
+        }
+
+        // Check if the train has reached the target
+        if (!agent.pathPending && agent.remainingDistance <= targetReachedThreshold)
+        {
+            if(targetIndex != target.Length - 1)
+            {
+                targetIndex = targetIndex + 1;
+            }
         }
     }
 

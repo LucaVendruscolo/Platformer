@@ -4,10 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public TMP_Text motivationalMessageText; // Assign this in the Inspector
-    public Canvas mainMenuCanvas;            // Reference to the Main Menu canvas
-    public Canvas optionsCanvas;             // Reference to the Options canvas
-
+    public TMP_Text motivationalMessageText; 
+    public Canvas mainMenuCanvas;         
+    public Canvas optionsCanvas;             
+    public Canvas levelCanvas;
+    public Canvas difficultyCanvas;
 
     void Start()
     {
@@ -32,14 +33,23 @@ public class MainMenu : MonoBehaviour
     }
     public void ShowOptions()
     {
-        mainMenuCanvas.gameObject.SetActive(false); // Hide the Main Menu canvas
-        optionsCanvas.gameObject.SetActive(true);   // Show the Options canvas
+        mainMenuCanvas.gameObject.SetActive(false); 
+        optionsCanvas.gameObject.SetActive(true);   
     }
-        // Method to show the Main Menu canvas and hide the Options canvas
+    public void ShowLevel()
+    {
+        mainMenuCanvas.gameObject.SetActive(false); 
+        levelCanvas.gameObject.SetActive(true);  
+    }
+    public void ShowLevel_frm_diff(){
+        difficultyCanvas.gameObject.SetActive(false);
+        levelCanvas.gameObject.SetActive(true);
+    }
     public void ShowMainMenu()
     {
-        mainMenuCanvas.gameObject.SetActive(true);  // Show the Main Menu canvas
-        optionsCanvas.gameObject.SetActive(false);  // Hide the Options canvas
+        mainMenuCanvas.gameObject.SetActive(true); 
+        optionsCanvas.gameObject.SetActive(false);  
+        optionsCanvas.gameObject.SetActive(false);
     }
     public void QuitGame()
     {
