@@ -72,7 +72,8 @@ public class Sliding : MonoBehaviour
     private void StartSlide()
     {
         pm.sliding = true;
-        
+        FindAnyObjectByType<AudioManager>().Play("SlidingSound");
+
         //Changing the Y scale so that it looks like we are crouched down sliding
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
         
@@ -119,6 +120,7 @@ public class Sliding : MonoBehaviour
     private void StopSlide()
     {
         pm.sliding = false;
+        FindAnyObjectByType<AudioManager>().Stop("SlidingSound");
         Debug.Log("Stopped Sliding");
         //Resetting scale as we are no longer sliding
         playerObj.localScale = new Vector3(playerObj.localScale.x, startYScale, playerObj.localScale.z);

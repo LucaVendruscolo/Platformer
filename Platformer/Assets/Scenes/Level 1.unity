@@ -10820,71 +10820,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTrainTag: TrainDestroyer
---- !u!1 &1384019583
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1384019585}
-  - component: {fileID: 1384019584}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1384019584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1384019583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d257059808bc9e4ebaaa24be3152486, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: JumpPowerSound
-    clip: {fileID: 8300000, guid: f25de4934981d6f48b3d2bcd70861de9, type: 3}
-    volume: 0.5
-    pitch: 1
-    source: {fileID: 0}
-  - name: DashPowerSound
-    clip: {fileID: 8300000, guid: 8fe5b1f7f19e782478a38f02104368bf, type: 3}
-    volume: 0.5
-    pitch: 1.25
-    source: {fileID: 0}
-  - name: PistolShootSound
-    clip: {fileID: 8300000, guid: ff0698a3c62b9e145b61b01514c22b6f, type: 3}
-    volume: 0.05
-    pitch: 1
-    source: {fileID: 0}
-  - name: ShotgunShootSound
-    clip: {fileID: 8300000, guid: 8c47dce3198b85e46a10965e743d51f4, type: 3}
-    volume: 0.1
-    pitch: 1
-    source: {fileID: 0}
---- !u!4 &1384019585
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1384019583}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 164.25368, y: 279.4135, z: 1074.2059}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1409716206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5991405153668851034, guid: 175f967bc5c23084bb3888221f3c288d, type: 3}
@@ -15105,6 +15040,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 175f967bc5c23084bb3888221f3c288d, type: 3}
+--- !u!1001 &1980481343
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1403750760962095952, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 164.25368
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403750760962095952, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 279.4135
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403750760962095952, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1074.2059
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403750760962095952, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403750760962095952, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403750760962095952, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403750760962095952, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403750760962095952, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403750760962095952, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403750760962095952, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470598975154635632, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
 --- !u!1001 &1981365160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16237,7 +16229,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1808520967}
-  - {fileID: 1384019585}
+  - {fileID: 1980481343}
   - {fileID: 1223219085}
   - {fileID: 2043223298}
   - {fileID: 1230932077}
