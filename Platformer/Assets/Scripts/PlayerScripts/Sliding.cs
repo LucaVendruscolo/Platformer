@@ -37,6 +37,8 @@ public class Sliding : MonoBehaviour
     {
         moveInput = pc.move.ReadValue<Vector2>();
 
+        Debug.Log("Sliding : " + pm.sliding);
+
         //Buffer the slide so that the player can slide the moment they touch the ground
         if (pc.sprint.WasPressedThisFrame()){
             slideBuffer = true;
@@ -50,7 +52,7 @@ public class Sliding : MonoBehaviour
         }
 
         //Player will stop sliding when they press a new input (This allows the user to swap to sprinting or jumping whilst still keeping the speed from sliding)
-        if (pc.jump.WasPressedThisFrame() && pm.sliding) {
+        if ((pc.jump.WasPressedThisFrame() && pm.sliding) || !pm.OnSlope()) {
             StopSlide();
         }
 
@@ -106,6 +108,8 @@ public class Sliding : MonoBehaviour
             rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
         //}
 
+
+        Debug.Log("Slope check : " + pm.OnSlope());
         if (!pm.OnSlope())
         {
             StopSlide();

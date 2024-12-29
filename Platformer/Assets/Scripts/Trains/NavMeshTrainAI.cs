@@ -7,7 +7,7 @@ public class NavMeshTrainAI : MonoBehaviour
     [SerializeField] private Transform[] target;
     private TrainGroupManager groupManager; // the train's group
     private int targetIndex = 0;
-    private const float targetReachedThreshold = 15.0f; 
+    private const float targetReachedThreshold = 20.0f; 
 
     private void Start()
     {
