@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class Sliding : MonoBehaviour
     private PlayerMovement pm;
     private PlayerControls pc;
 
+
     [Header("Sliding")]
     public float maxSlideTime;
     public float slideForce;
@@ -21,6 +23,9 @@ public class Sliding : MonoBehaviour
     [Header("Input")]
     private Vector2 moveInput;
     private bool slideBuffer;
+
+    [Header("Effects")]
+    public ParticleSystem slideEffect;
 
     private void Start()
     {
@@ -52,7 +57,7 @@ public class Sliding : MonoBehaviour
         }
 
         //Player will stop sliding when they press a new input (This allows the user to swap to sprinting or jumping whilst still keeping the speed from sliding)
-        if ((pc.jump.WasPressedThisFrame() && pm.sliding) || !pm.OnSlope()) {
+        if ((pc.jump.WasPressedThisFrame() && pm.sliding) || !pm.OnSlope() || rb.velocity.y > 0) {
             StopSlide();
         }
 
@@ -73,6 +78,7 @@ public class Sliding : MonoBehaviour
     {
         pm.sliding = true;
         FindAnyObjectByType<AudioManager>().Play("SlidingSound");
+        slideEffect.Play();
 
         //Changing the Y scale so that it looks like we are crouched down sliding
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
@@ -121,6 +127,8 @@ public class Sliding : MonoBehaviour
     {
         pm.sliding = false;
         FindAnyObjectByType<AudioManager>().Stop("SlidingSound");
+        slideEffect.Stop();
+
         Debug.Log("Stopped Sliding");
         //Resetting scale as we are no longer sliding
         playerObj.localScale = new Vector3(playerObj.localScale.x, startYScale, playerObj.localScale.z);

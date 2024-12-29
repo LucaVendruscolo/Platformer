@@ -15585,6 +15585,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTrainTag: TrainDestroyer
+--- !u!1 &972518903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7017683060595874679, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+  m_PrefabInstance: {fileID: 1230932077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &974788092
 GameObject:
   m_ObjectHideFlags: 0
@@ -18858,6 +18863,10 @@ PrefabInstance:
       propertyPath: explosionPrefab
       value: 
       objectReference: {fileID: 4213668841573073143, guid: 7bcf1f0fed55cc4439230a93b514638b, type: 3}
+    - target: {fileID: 3061306562977996431, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: slideEffect
+      value: 
+      objectReference: {fileID: 1532262436}
     - target: {fileID: 3624734280686764415, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
       propertyPath: bulletVelocity
       value: 100
@@ -18898,6 +18907,14 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 7191
       objectReference: {fileID: 0}
+    - target: {fileID: 4695575197182582124, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: waterFX
+      value: 
+      objectReference: {fileID: 972518903}
+    - target: {fileID: 4695575197182582124, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: bubbleFX
+      value: 
+      objectReference: {fileID: 1987822708}
     - target: {fileID: 4695575197182582124, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
       propertyPath: waterAirDrag
       value: 20
@@ -18962,6 +18979,10 @@ PrefabInstance:
       propertyPath: emergencySpawnArea
       value: 
       objectReference: {fileID: 807690897}
+    - target: {fileID: 7159795799577812980, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.24
+      objectReference: {fileID: 0}
     - target: {fileID: 7931633721377025253, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
       propertyPath: m_TagString
       value: player
@@ -22297,6 +22318,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 175f967bc5c23084bb3888221f3c288d, type: 3}
+--- !u!198 &1532262436 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2473398244059347864, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
+  m_PrefabInstance: {fileID: 1230932077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1536115001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5991405153668851034, guid: 175f967bc5c23084bb3888221f3c288d, type: 3}
@@ -29490,6 +29516,11 @@ Transform:
   - {fileID: 866585630}
   m_Father: {fileID: 67476765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1987822708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 260452896151795212, guid: e2ac093d2c94e7745a588fac61f09757, type: 3}
+  m_PrefabInstance: {fileID: 1223219085}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1988297238
 PrefabInstance:
   m_ObjectHideFlags: 0
