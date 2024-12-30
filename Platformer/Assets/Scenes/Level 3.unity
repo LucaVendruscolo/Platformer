@@ -18649,6 +18649,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivitySlider: {fileID: 1208221041}
+  bgmSlider: {fileID: 4670062891727067800}
+  sfxSlider: {fileID: 4670062891727067799}
 --- !u!1 &1224797365 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7218910709563869464, guid: 60568abbed781d643a95fe465ddf7d89, type: 3}
@@ -31336,6 +31338,14 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1772724639083126814, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1223219091}
+    - target: {fileID: 1772724639083126814, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToDefaultSFX
+      objectReference: {fileID: 0}
     - target: {fileID: 2103364542975765362, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -31420,6 +31430,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1223219091}
+    - target: {fileID: 2604123730637123224, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToDefaultSens
+      objectReference: {fileID: 0}
     - target: {fileID: 3020925420778259348, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
       propertyPath: m_Name
       value: OptionsMenu
@@ -31452,6 +31466,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5531692762850063843, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1223219091}
+    - target: {fileID: 5531692762850063843, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToDefaultBGM
+      objectReference: {fileID: 0}
     - target: {fileID: 5681598069016921256, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -31481,6 +31503,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
+--- !u!114 &4670062891727067799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7010506518386744269, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
+  m_PrefabInstance: {fileID: 4670062891727067798}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4670062891727067800 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8919608167105373662, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
+  m_PrefabInstance: {fileID: 4670062891727067798}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

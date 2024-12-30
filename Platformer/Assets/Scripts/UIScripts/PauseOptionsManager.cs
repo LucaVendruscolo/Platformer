@@ -3,21 +3,28 @@ using UnityEngine.UI;
 
 public class PauseOptionsManager : MonoBehaviour
 {
-    public Slider sensitivitySlider; // Reference to the slider in the pause menu
-    public Slider bgmSlider;         // Reference to the background music slider
-    public Slider sfxSlider;         // Reference to the sound effects slider
+    public Slider sensitivitySlider; 
+    public Slider bgmSlider;      
+    public Slider sfxSlider;      
 
-    private float defaultSensitivity = 25.0f; // Default sensitivity value
-    private float defaultBGMVolume = 0.05f;   // Default background music volume
-    private float defaultSFXVolume = 1f;      // Default sound effects volume
+    private float defaultSensitivity = 25.0f; 
+    private float defaultBGMVolume = 0.05f;   
+    private float defaultSFXVolume = 1f;      
 
-    private PlayerCam playerCam; // Reference to PlayerCam
-    private AudioManager audioManager; // Reference to AudioManager
+    private PlayerCam playerCam; 
+    private AudioManager audioManager; 
+    private AudioSource bgmAudioSource; 
 
     private void Start()
     {
         // Find the PlayerCam script in the scene
         playerCam = FindObjectOfType<PlayerCam>();
+
+        if (playerCam != null)
+        {
+            // Get the AudioSource component from PlayerCam
+            bgmAudioSource = playerCam.GetComponent<AudioSource>();
+        }
 
         // Find the AudioManager in the scene
         audioManager = FindObjectOfType<AudioManager>();
@@ -50,7 +57,6 @@ public class PauseOptionsManager : MonoBehaviour
 
     private void OnSensitivityChanged(float newValue)
     {
-        // Update the PlayerCam sensitivity
         if (playerCam != null)
         {
             playerCam.UpdateSensitivity(newValue);
@@ -63,11 +69,11 @@ public class PauseOptionsManager : MonoBehaviour
 
     private void OnBGMVolumeChanged(float newValue)
     {
-        // Update the background music volume
-        if (audioManager != null)
+        if (bgmAudioSource != null && bgmAudioSource.isPlaying)
         {
-            audioManager.SetVolume("BackgroundMusic", newValue); // Ensure your AudioManager has this method
+            bgmAudioSource.volume = newValue; // Adjust volume in real time
         }
+
 
         // Save the BGM volume to PlayerPrefs
         PlayerPrefs.SetFloat("BackgroundMusicVolume", newValue);
