@@ -54,6 +54,18 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Stop();
     }
+    public void SetVolume(string name, float volume)
+{
+    Sound s = Array.Find(sounds, sound => sound.name == name);
+    if (s == null)
+    {
+        Debug.LogWarning($"Sound {name} not found!");
+        return;
+    }
+
+    s.source.volume = volume;
+}
+
 
     // Method to update the global SFX volume
     public void UpdateGlobalSFXVolume(float multiplier)
@@ -68,7 +80,6 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        // Optionally, save the global SFX volume
         PlayerPrefs.SetFloat("GlobalSFXVolume", globalSFXVolume);
         PlayerPrefs.Save();
     }
