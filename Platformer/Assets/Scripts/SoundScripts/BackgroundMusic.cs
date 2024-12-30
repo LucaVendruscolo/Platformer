@@ -9,7 +9,7 @@ public class BackgroundMusic : MonoBehaviour
         // Ensure this GameObject persists across scenes
         DontDestroyOnLoad(gameObject);
 
-        // Get the AudioSource component
+        // Get the AudioSource component located in PlayerCam
         audioSource = GetComponent<AudioSource>();
 
         // Load the saved volume from PlayerPrefs or use a default value
@@ -17,7 +17,7 @@ public class BackgroundMusic : MonoBehaviour
         audioSource.volume = savedVolume;
     }
 
-    // Method to set the volume and save it to PlayerPrefs
+    
     public void SetVolume(float volume)
     {
         audioSource.volume = volume; // Update the AudioSource volume
