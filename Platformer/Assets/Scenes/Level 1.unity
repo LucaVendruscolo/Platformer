@@ -106,7 +106,7 @@ NavMeshSettings:
     serializedVersion: 3
     agentTypeID: 0
     agentRadius: 0.5
-    agentHeight: 2
+    agentHeight: 0.5
     agentSlope: 45
     agentClimb: 0.4
     ledgeDropHeight: 0
@@ -546,7 +546,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 119
   m_IsActive: 1
 --- !u!4 &50125357
 Transform:
@@ -3503,7 +3503,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 119
   m_IsActive: 1
 --- !u!4 &416640722
 Transform:
@@ -3623,7 +3623,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 119
   m_IsActive: 1
 --- !u!4 &466737726
 Transform:
