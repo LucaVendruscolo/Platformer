@@ -42,7 +42,7 @@ public class Sliding : MonoBehaviour
     {
         moveInput = pc.move.ReadValue<Vector2>();
 
-        Debug.Log("Sliding : " + pm.sliding);
+        //Debug.Log("Sliding : " + pm.sliding);
 
         //Buffer the slide so that the player can slide the moment they touch the ground
         if (pc.sprint.WasPressedThisFrame()){
@@ -51,7 +51,7 @@ public class Sliding : MonoBehaviour
         //Checking if the user can slide
         if (slideBuffer && (moveInput.x != 0 || moveInput.y != 0) && pm.OnSlope()) {
             slideBuffer = false;
-            Debug.Log("Sliding");
+            //Debug.Log("Sliding");
             StartSlide();
             
         }
@@ -129,7 +129,7 @@ public class Sliding : MonoBehaviour
         FindAnyObjectByType<AudioManager>().Stop("SlidingSound");
         slideEffect.Stop();
 
-        Debug.Log("Stopped Sliding");
+        //Debug.Log("Stopped Sliding");
         //Resetting scale as we are no longer sliding
         playerObj.localScale = new Vector3(playerObj.localScale.x, startYScale, playerObj.localScale.z);
     }
