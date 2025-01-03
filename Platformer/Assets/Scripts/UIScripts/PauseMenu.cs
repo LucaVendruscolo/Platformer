@@ -47,6 +47,15 @@ public class PauseMenu : MonoBehaviour
         optionsMenuPanel.SetActive(false); // Ensure the options menu is hidden
         Time.timeScale = 1f; // Resume game time
         isPaused = false;
+        // Unmute all AudioSources
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource source in allAudioSources)
+        {
+            if (source.loop == false) // Likely an SFX
+            {
+                source.mute = false;
+            }
+        }
 
         // Lock the cursor back for FPS mode
         Cursor.lockState = CursorLockMode.Locked;
@@ -65,6 +74,16 @@ public class PauseMenu : MonoBehaviour
         // Unlock the cursor so player can interact with UI
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        // Mute all AudioSources for SFX
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource source in allAudioSources)
+        {
+            if (source.loop == false) // Likely an SFX
+            {
+                source.mute = true;
+            }
+        }
 
     }
     public void RestartGame()
