@@ -33,6 +33,11 @@ public class GunLoader : MonoBehaviour
     
     private void HandleWeaponSwitch() // switch using the scroll wheel
     {
+        // Check if the game is paused
+        if (PauseMenu.isPaused)
+        {
+            return; // Do nothing if the game is paused
+        }
         float scrollInput = Input.GetAxis("Mouse ScrollWheel"); 
 
         if (scrollInput > 0f) 

@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI; // Assign the pause menu UI in the Inspector
     public GameObject pauseMenuPanel;
     public GameObject optionsMenuPanel;
-    private bool isPaused = false;
+    public static bool isPaused = false;
     private PlayerInputActions playerControls ;
 
     void Awake()
