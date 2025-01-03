@@ -186,6 +186,7 @@ public class Weapon : MonoBehaviour
             Destroy(hitObject);
             BarEventManager.OnSliderReset();
             ScoreEventManager.OnScoreIncrement();
+            FindAnyObjectByType<AudioManager>().Play("MonsterDeath");
         }
         else if (hitObject.CompareTag("secret"))
         {
@@ -194,6 +195,7 @@ public class Weapon : MonoBehaviour
             {
                 Destroy(hitObject);
                 secretTrigger.OnTargetHit();
+                FindAnyObjectByType<AudioManager>().Play("MonsterDeath");
             }
         }
         else if (hitObject.CompareTag("hitbox"))
@@ -205,10 +207,12 @@ public class Weapon : MonoBehaviour
             }
             BarEventManager.OnSliderReset();
             ScoreEventManager.OnScoreIncrement();
+            FindAnyObjectByType<AudioManager>().Play("MonsterDeath");
         }
         else if (hitObject.CompareTag("powerup"))
         {
             ApplyPowerUp(hitObject);
+            FindAnyObjectByType<AudioManager>().Play("MonsterDeath");
         }
     }
 

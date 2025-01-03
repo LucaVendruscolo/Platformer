@@ -70,3 +70,30 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1
     source: {fileID: 0}
+  monsterDeathSounds:
+  - name: 1
+    clip: {fileID: 8300000, guid: ba2a5b8ad91c0e04f8c68546a5cb03b1, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
+  - name: 2
+    clip: {fileID: 8300000, guid: 1c4a0797575404e4f92990b980291a24, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
+  - name: 3
+    clip: {fileID: 8300000, guid: c1a314c39c351734898c2c7f1fbb1ae8, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
+  - name: 4
+    clip: {fileID: 8300000, guid: 0d7504daaee7e954493f744c5d993741, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
+  - name: 5
+    clip: {fileID: 8300000, guid: e051c60a62ad88f45938981d0d95a967, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
+  globalSFXVolume: 1

@@ -4,6 +4,7 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+    public Sound[] monsterDeathSounds;
 
     public static AudioManager instance;
 
@@ -31,11 +32,23 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume * globalSFXVolume; // Apply global multiplier
             s.source.pitch = s.pitch;
         }
+        foreach (Sound s in monsterDeathSounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume * globalSFXVolume; // Apply global multiplier
+            s.source.pitch = s.pitch;
+        }
     }
 
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if(name == "MonsterDeath")
+        {
+            s = monsterDeathSounds[UnityEngine.Random.Range(0, monsterDeathSounds.Length)];
+        }
         if (s == null)
         {
             Debug.LogWarning($"Sound {name} not found!");

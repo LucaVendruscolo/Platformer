@@ -15816,6 +15816,90 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ba2a5b8ad91c0e04f8c68546a5cb03b1, type: 3}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[0].name
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c4a0797575404e4f92990b980291a24, type: 3}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[1].name
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c1a314c39c351734898c2c7f1fbb1ae8, type: 3}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[2].name
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d7504daaee7e954493f744c5d993741, type: 3}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[3].name
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e051c60a62ad88f45938981d0d95a967, type: 3}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[4].name
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[1].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[3].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[4].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[0].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[1].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[2].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[3].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072276955559243907, guid: d8502e953f0994b4db24df4eea47904d, type: 3}
+      propertyPath: monsterDeathSounds.Array.data[4].volume
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
