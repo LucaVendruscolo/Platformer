@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7335094980810197883}
   - component: {fileID: 5861061463595290457}
   - component: {fileID: 1429676624035934945}
+  - component: {fileID: -4392522355947089527}
   m_Layer: 0
   m_Name: JumpPower
   m_TagString: powerup
@@ -119,3 +120,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerType: 0
+--- !u!114 &-4392522355947089527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4688124503426636255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6874b1ad659d8a49a0ef7a335c0aea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 100
+  maxRotationAngle: 30

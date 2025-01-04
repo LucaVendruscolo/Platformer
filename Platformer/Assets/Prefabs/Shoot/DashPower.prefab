@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1198893152650490462}
   - component: {fileID: 1442167544683754081}
   - component: {fileID: 1724186500958596649}
+  - component: {fileID: 1590760422149681231}
   m_Layer: 0
   m_Name: DashPower
   m_TagString: powerup
@@ -119,3 +120,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerType: 1
+--- !u!114 &1590760422149681231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8661860159659108301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6874b1ad659d8a49a0ef7a335c0aea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 100
+  maxRotationAngle: 30
