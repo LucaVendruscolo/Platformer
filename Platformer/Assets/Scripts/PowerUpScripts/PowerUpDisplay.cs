@@ -40,13 +40,11 @@ public class PowerUpDisplay : MonoBehaviour
         }
 
         //Update UI Icon
-        if (!PowerIcon.activeSelf) {
-            foreach (GameObject icon in PowerIconObjects)
-            {
-                RawImage iconImage = icon.GetComponent<RawImage>();
-                iconImage.texture = JumpIcon;
-                PowerIcon.gameObject.SetActive(true);
-            }
+        foreach (GameObject icon in PowerIconObjects)
+        {
+            RawImage iconImage = icon.GetComponent<RawImage>();
+            iconImage.texture = JumpIcon;
+            PowerIcon.gameObject.SetActive(true);
         }
     }
 
@@ -61,16 +59,12 @@ public class PowerUpDisplay : MonoBehaviour
         }
 
         //Update UI Icon
-        if (!PowerIcon.activeSelf)
+        foreach(GameObject icon in PowerIconObjects)
         {
-            foreach(GameObject icon in PowerIconObjects)
-            {
-                RawImage iconImage = icon.GetComponent<RawImage>();
-                iconImage.texture = DashIcon;
-                PowerIcon.gameObject.SetActive(true);
-            }
+            RawImage iconImage = icon.GetComponent<RawImage>();
+            iconImage.texture = DashIcon;
+            PowerIcon.gameObject.SetActive(true);
         }
-
     }
 
     private void PowerUpEventManager_RemoveDisplayPowerUp()
