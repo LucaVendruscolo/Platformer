@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayTutorial()
     { 
-        SceneManager.LoadScene("Level Tutorial 1");
+        SceneManager.LoadScene("Tutorial");
     }
     public void ShowOptions()
     {
