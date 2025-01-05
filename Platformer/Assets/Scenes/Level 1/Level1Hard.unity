@@ -6788,8 +6788,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastScene: 
-  finalScore: 0
+  currentLevelName: 
   finalTime: 0
+  finalScore: 0
 --- !u!4 &646993338
 Transform:
   m_ObjectHideFlags: 0
@@ -11649,6 +11650,10 @@ PrefabInstance:
     - target: {fileID: 1646465881764107898, guid: 24d440539e7252848a2fcf591144a474, type: 3}
       propertyPath: m_Name
       value: WreckingBallPrefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806724140139749507, guid: 24d440539e7252848a2fcf591144a474, type: 3}
+      propertyPath: swingAngle
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8692024734076058257, guid: 24d440539e7252848a2fcf591144a474, type: 3}
       propertyPath: m_LocalScale.x
