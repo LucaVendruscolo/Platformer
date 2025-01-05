@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 7cd3f8702e2165742857aadfbc9a99cf
-  m_OcclusionCullingData: {fileID: 36300000, guid: 4189e0d7ae6fba44e8d4bf0eea07c411, type: 2}
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: cb5a7d910cd65fc4a92906aff7bae0a8, type: 2}
   m_LightingSettings: {fileID: 262267903}
 --- !u!196 &4
 NavMeshSettings:
@@ -10405,10 +10405,6 @@ PrefabInstance:
       propertyPath: m_TargetTexture
       value: 
       objectReference: {fileID: 8400000, guid: 87e746a8894a75345bb400f9fef10ab7, type: 2}
-    - target: {fileID: 3856627909674800781, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
-      propertyPath: m_OcclusionCulling
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4496852198343162884, guid: ec3352d5b8d2cb442997aea6ea97f01a, type: 3}
       propertyPath: jumpSFX
       value: 
