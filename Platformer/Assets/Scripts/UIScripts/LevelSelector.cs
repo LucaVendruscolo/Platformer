@@ -28,7 +28,7 @@ public class LevelSelector : MonoBehaviour
             string levelKey = "Level" + (i + 1) + "_Completed";
             bool isUnlocked = PlayerPrefs.GetInt(levelKey, 0) == 1;
 
-            levelButtons[i].interactable = isUnlocked; // Enable button if level is unlocked
+            levelButtons[i].interactable = isUnlocked || i == 0; // Enable button if level is unlocked
             Debug.Log($"[LevelSelector] Level {i + 1} unlocked: {isUnlocked}");
         }
     }
