@@ -26,23 +26,30 @@ public class LevelSelector : MonoBehaviour
         UnlockLevels();
     }
 
+
     private void UnlockLevels()
     {
-        for (int i = 0; i < levelButtons.Length; i++) // Loop through all level buttons
+        for (int i = 0; i < levelButtons.Length; i++)
         {
-            string levelKey = "Level" + (i + 1) + "_Completed"; // Use "Level1_Completed", "Level2_Completed", etc.
+            string baseLevelKey = "Level" + i;
+            bool isUnlocked = false;
 
-            // Check if the level is unlocked based on PlayerPrefs
-            bool isUnlocked = PlayerPrefs.GetInt(levelKey, 0) == 1;
 
-            // Enable or disable the button
-            levelButtons[i].interactable = isUnlocked;
-
-            // Debugging: Check which levels are being unlocked
-            Debug.Log($"Level {i + 1} unlocked: {isUnlocked}");
+            // Check all difficulties for the level
+            foreach (Difficulty difficulty in Enum.GetValues(typeof(Difficulty)))
+            {
+                string difficultyKey = baseLevelKey + difficulty + "_Completed";
+                if (PlayerPrefs.GetInt(difficultyKey, 0) == 1)
+                {
+                    Debug.Log($"Level {i} unlocked via {difficultyKey}");
+                    isUnlocked = true;
+                    break; // If any difficulty is completed, unlock the level
+                }
+            }
+            // Enable or disable the level button
+            levelButtons[i].interactable = isUnlocked || i == 0; // Always unlock Level 1
         }
     }
-
 
     public void OpenLevel(int levelId)
     {
