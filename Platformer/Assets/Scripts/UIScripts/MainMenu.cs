@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public TMP_Text motivationalMessageText; 
+    //public TMP_Text motivationalMessageText; 
     public Canvas mainMenuCanvas;         
     public Canvas optionsCanvas;             
     public Canvas levelCanvas;
@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         // Display the last motivational message
-        motivationalMessageText.text = OpenAIController.lastMotivationalMessage;
+        //motivationalMessageText.text = OpenAIController.lastMotivationalMessage;
 
         // Unlock cursor for menu navigation
         Cursor.lockState = CursorLockMode.None;

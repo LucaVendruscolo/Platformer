@@ -7,13 +7,12 @@ public class AdamGameComplete : MonoBehaviour
 {
     public TMP_Text finalScoreText; // Assign this in the Inspector
     public TMP_Text finalTimeText;  // Assign in the Inspector
-
+    
     private void Start()
     {
 
-        // Retrieve the final score from GameManager
+        // Display the final score and time from GameManager
         int finalScore = GameManager.Instance != null ? GameManager.Instance.finalScore : 0;
-        // Retrieve the final time
         float finalTime = GameManager.Instance.finalTime;
 
         // Format the time using TimeSpan
@@ -22,6 +21,7 @@ public class AdamGameComplete : MonoBehaviour
 
         // Display the final score
         finalScoreText.text = "Final Score: " + finalScore;
+        Debug.Log($"Displayed data: Score = {finalScore}, Time = {finalTime}");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
