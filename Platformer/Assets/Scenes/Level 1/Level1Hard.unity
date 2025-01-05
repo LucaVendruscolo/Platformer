@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: d83675400d4f87c4b99b1ffffd1d69ab, type: 2}
   m_LightingSettings: {fileID: 262267903}
 --- !u!196 &4
 NavMeshSettings:
@@ -2835,8 +2835,8 @@ LightingSettings:
   m_AlbedoBoost: 1
   m_IndirectOutputScale: 1
   m_UsingShadowmask: 1
-  m_BakeBackend: 1
-  m_LightmapMaxSize: 1024
+  m_BakeBackend: 2
+  m_LightmapMaxSize: 512
   m_BakeResolution: 40
   m_Padding: 2
   m_LightmapCompression: 3
@@ -6788,8 +6788,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastScene: 
-  finalScore: 0
+  currentLevelName: 
   finalTime: 0
+  finalScore: 0
 --- !u!4 &646993338
 Transform:
   m_ObjectHideFlags: 0
