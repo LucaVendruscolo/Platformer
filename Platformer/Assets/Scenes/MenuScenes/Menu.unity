@@ -5465,12 +5465,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f714083bd9916974e961bd0e15d07f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficultyCanvas: {fileID: 1733413315}
-  levelCanvas: {fileID: 674452359}
   levelButtons:
   - {fileID: 693612429}
   - {fileID: 1969809515}
   - {fileID: 1389715258}
+  levelCanvas: {fileID: 674452359}
+  difficultyCanvas: {fileID: 1733413315}
 --- !u!114 &1126107589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5729,7 +5729,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: 173}
+  m_AnchoredPosition: {x: 18, y: 209}
   m_SizeDelta: {x: 198.0889, y: 117.9316}
   m_Pivot: {x: 0.5495424, y: 0.5000001}
 --- !u!114 &1256364332
@@ -6242,9 +6242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f714083bd9916974e961bd0e15d07f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficultyCanvas: {fileID: 1733413315}
-  levelCanvas: {fileID: 674452359}
   levelButtons: []
+  levelCanvas: {fileID: 674452359}
+  difficultyCanvas: {fileID: 1733413315}
 --- !u!114 &1325577882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7233,7 +7233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: 186}
+  m_AnchoredPosition: {x: 18, y: 210}
   m_SizeDelta: {x: 198.0889, y: 117.9316}
   m_Pivot: {x: 0.5495424, y: 0.5000001}
 --- !u!114 &1550480937
@@ -7954,7 +7954,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: 162}
+  m_AnchoredPosition: {x: 18, y: 197}
   m_SizeDelta: {x: 198.0889, y: 117.9316}
   m_Pivot: {x: 0.5495424, y: 0.5000001}
 --- !u!114 &1727794836
@@ -9347,7 +9347,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: 186}
+  m_AnchoredPosition: {x: 18, y: 213}
   m_SizeDelta: {x: 198.0889, y: 117.9316}
   m_Pivot: {x: 0.5495424, y: 0.5000001}
 --- !u!114 &2086314853

@@ -4,16 +4,17 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public string lastScene = "";       // Tracks the last scene
-    public int finalScore = 0;          // For score
-    public float finalTime = 0f;        // For timer
-    public string currentLevelName;     // Stores the selected level name
+
+    public string lastScene = "";   // Tracks the last scene 
+    public string currentLevelName; // Stores the current level name (e.g., "Level1")
+    public float finalTime;         // Stores the player's final time
+    public int finalScore;          // Stores the player's final score
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject); // Destroy duplicate instances
+            Destroy(gameObject); // Prevent duplicate GameManagers
         }
         else
         {
@@ -22,52 +23,46 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SaveCompletionData()
+    public void MarkLevelCompleted(string levelName)
     {
-        if (!string.IsNullOrEmpty(currentLevelName))
-        {
-            Debug.Log($"Saving completion data for level: {currentLevelName}");
+        // Mark the current level as completed
+        PlayerPrefs.SetInt(levelName + "_Completed", 1);
+        Debug.Log($"[GameManager] {levelName} marked as completed!");
 
-            // Save the best time for the level and difficulty
-            SaveBestTime(currentLevelName, finalTime);
-
-            // Mark the current level as completed
-            LevelSelector.MarkLevelCompleted(currentLevelName);
-        }
-        else
+        // Unlock the next level
+        int currentLevelNumber = GetLevelNumber(levelName);
+        if (currentLevelNumber > 0)
         {
-            Debug.LogError("GameManager: currentLevelName is empty or null. Cannot save completion data.");
+            string nextLevelKey = "Level" + (currentLevelNumber + 1) + "_Completed";
+            PlayerPrefs.SetInt(nextLevelKey, 1);
+            Debug.Log($"[GameManager] Unlocked {nextLevelKey}");
         }
+
+        PlayerPrefs.Save();
     }
 
-    private void SaveBestTime(string levelName, float finalTime)
+    private int GetLevelNumber(string levelName)
     {
-        // Use levelName to make the key unique for each level and difficulty
-        string bestTimeKey = $"{levelName}_BestTime"; // e.g., "Level1Easy_BestTime"
-        float bestTime = PlayerPrefs.GetFloat(bestTimeKey, float.MaxValue);
-
-        // Save only if the new time is better
-        if (finalTime < bestTime)
+        // Extract the level number from the name (e.g., "Level1" -> 1)
+        System.Text.RegularExpressions.Match match = System.Text.RegularExpressions.Regex.Match(levelName, @"\d+");
+        if (match.Success && int.TryParse(match.Value, out int levelNumber))
         {
-            Debug.Log($"New best time for {levelName}: {finalTime}");
-            PlayerPrefs.SetFloat(bestTimeKey, finalTime);
-            PlayerPrefs.Save();
+            return levelNumber;
         }
-        else
-        {
-            Debug.Log($"No new best time for {levelName}. Current best: {bestTime}, Final time: {finalTime}");
-        }
-    }
 
-    public void SetCurrentLevelName(string levelName)
-    {
-        currentLevelName = levelName;
-        Debug.Log($"GameManager: Current level name set to {currentLevelName}");
+        Debug.LogError($"[GameManager] Invalid level name format: {levelName}");
+        return 0; // Default to 0 if parsing fails
     }
-
-    public float GetBestTime(string levelName, string difficulty)
+    public void SetLastScene(string sceneName)
     {
-        string bestTimeKey = $"{levelName}{difficulty}_BestTime"; // e.g., "Level1Easy_BestTime"
-        return PlayerPrefs.GetFloat(bestTimeKey, float.MaxValue); // Return best time or float.MaxValue if none exists
+        lastScene = sceneName;
+        Debug.Log($"GameManager: Last scene set to {lastScene}");
+    }
+    public void ResetProgress()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("Level1_Completed", 1); // Ensure Level 1 is always unlocked
+        PlayerPrefs.Save();
+        Debug.Log("[GameManager] Progress reset. Level 1 unlocked.");
     }
 }

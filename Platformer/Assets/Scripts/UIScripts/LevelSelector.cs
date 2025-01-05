@@ -1,111 +1,51 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-//from Rehope games youtube channel 
 public class LevelSelector : MonoBehaviour
 {
-    public Canvas difficultyCanvas;             
+    public Button[] levelButtons; // Assign buttons for levels in the Inspector
     public Canvas levelCanvas;
-    public static string levelName;
-    public Button[] levelButtons;
+    public Canvas difficultyCanvas;
 
+    public static string levelName; // Tracks the selected level name
+    public enum Difficulty { Easy, Medium, Hard }
+    public static Difficulty selectedDifficulty;
 
-    public static Difficulty selectedDifficulty; 
-    public enum Difficulty
-    {
-        Easy,
-        Medium,
-        Hard
-    }
     private void Start()
     {
-        // Unlock levels based on completion
-        UnlockLevels();
+        UnlockLevels(); // Unlock levels based on progress
     }
-
 
     private void UnlockLevels()
     {
         for (int i = 0; i < levelButtons.Length; i++)
         {
-            string baseLevelKey = "Level" + i;
-            bool isUnlocked = false;
+            string levelKey = "Level" + (i + 1) + "_Completed";
+            bool isUnlocked = PlayerPrefs.GetInt(levelKey, 0) == 1;
 
-
-            // Check all difficulties for the level
-            foreach (Difficulty difficulty in Enum.GetValues(typeof(Difficulty)))
-            {
-                string difficultyKey = baseLevelKey + difficulty + "_Completed";
-                if (PlayerPrefs.GetInt(difficultyKey, 0) == 1)
-                {
-                    Debug.Log($"Level {i} unlocked via {difficultyKey}");
-                    isUnlocked = true;
-                    break; // If any difficulty is completed, unlock the level
-                }
-            }
-            // Enable or disable the level button
-            levelButtons[i].interactable = isUnlocked || i == 0; // Always unlock Level 1
+            levelButtons[i].interactable = isUnlocked; // Enable button if level is unlocked
+            Debug.Log($"[LevelSelector] Level {i + 1} unlocked: {isUnlocked}");
         }
     }
 
     public void OpenLevel(int levelId)
     {
         levelName = "Level" + levelId;
+        Debug.Log($"[LevelSelector] Selected {levelName}");
 
-        // Save the level name in GameManager
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.currentLevelName = levelName;
-            Debug.Log($"[LevelSelector] Saved {levelName} to GameManager");
-        }
-
-        levelCanvas.gameObject.SetActive(false); 
+        levelCanvas.gameObject.SetActive(false);
         difficultyCanvas.gameObject.SetActive(true);
     }
+
     public void SelectDifficulty(int difficulty)
     {
-        // set difficulty level
         selectedDifficulty = (Difficulty)difficulty;
-        
-        levelName += selectedDifficulty;
-        Debug.Log($"Loading level {levelName}");
-        SceneManager.LoadScene(levelName);
+
+        // Construct the scene name (e.g., "Level1Easy", "Level2Medium")
+        string fullSceneName = levelName + selectedDifficulty;
+        Debug.Log($"[LevelSelector] Loading scene: {fullSceneName}");
+
+        SceneManager.LoadScene(fullSceneName);
     }
-    public static void MarkLevelCompleted(string levelName)
-    {
-        // Mark the current level as completed in PlayerPrefs
-        string levelKey = levelName + "_Completed";
-        PlayerPrefs.SetInt(levelKey, 1);
-
-        // Unlock the next level
-        int currentLevelNumber = GetLevelNumber(levelName); // Extract the current level number
-        if (currentLevelNumber > 0) // Ensure the level number is valid
-        {
-            string nextLevelKey = "Level" + (currentLevelNumber + 1) + "_Completed";
-            PlayerPrefs.SetInt(nextLevelKey, 1); // Unlock the next level
-        }
-        else
-        {
-            Debug.LogError($"MarkLevelCompleted: Failed to unlock next level for {levelName}");
-        }
-
-        PlayerPrefs.Save();
-    }
-
-    private static int GetLevelNumber(string levelName)
-    {
-        System.Text.RegularExpressions.Match match = System.Text.RegularExpressions.Regex.Match(levelName, @"\d+");
-        if (match.Success && int.TryParse(match.Value, out int levelNumber))
-        {
-            return levelNumber;
-        }
-
-        Debug.LogError($"Invalid level name format: {levelName}");
-        return 0;
-    }
-
-
 }

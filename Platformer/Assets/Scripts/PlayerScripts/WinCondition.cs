@@ -7,24 +7,21 @@ public class WinCondition : MonoBehaviour
     {
         if (other.CompareTag("win"))
         {
-            Debug.Log("Player entered win trigger.");
-
-            // Store the score and time in GameManager
             if (GameManager.Instance != null)
             {
-                GameManager.Instance.finalScore = FindObjectOfType<Score>().GetCurrentScore();
+                GameManager.Instance.finalScore = FindObjectOfType<Score>().GetCurrentScore(); 
                 GameManager.Instance.finalTime = FindObjectOfType<Timer>().GetCurrentTime();
-                GameManager.Instance.lastScene = SceneManager.GetActiveScene().name;
-
-                Debug.Log($"Stored data in GameManager: Score = {GameManager.Instance.finalScore}, Time = {GameManager.Instance.finalTime}, Scene = {GameManager.Instance.lastScene}");
-
-                // Save completion data using GameManager
-                GameManager.Instance.SaveCompletionData();
+                GameManager.Instance.currentLevelName = SceneManager.GetActiveScene().name;
+                GameManager.Instance.SetLastScene(SceneManager.GetActiveScene().name);
+                // Mark the level as completed
+                GameManager.Instance.MarkLevelCompleted(GameManager.Instance.currentLevelName);
             }
             else
             {
-                Debug.LogError("GameManager.Instance is null! Cannot store score and time.");
+                Debug.LogError("[WinCondition] GameManager is null. Cannot save progress.");
             }
+
+            // Load the win screen
             SceneManager.LoadScene("WinScene");
         }
     }
