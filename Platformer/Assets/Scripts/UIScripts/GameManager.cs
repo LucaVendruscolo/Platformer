@@ -40,6 +40,25 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.Save();
     }
+    public void SaveBestTime(string levelName, string difficulty, float finalTime)
+    {
+        string bestTimeKey = $"{levelName}{difficulty}_BestTime"; // e.g., "Level1Easy_BestTime"
+        float bestTime = PlayerPrefs.GetFloat(bestTimeKey, float.MaxValue);
+
+        // Save only if the new time is better
+        if (finalTime < bestTime)
+        {
+            PlayerPrefs.SetFloat(bestTimeKey, finalTime);
+            PlayerPrefs.Save();
+            Debug.Log($"New best time saved for {bestTimeKey}: {finalTime}");
+        }
+        else
+        {
+            Debug.Log($"No new best time for {bestTimeKey}. Current best: {bestTime}, Final time: {finalTime}");
+        }
+        Debug.Log($"[GameManager] Saving best time with key: {levelName}{difficulty}_BestTime");
+
+    }
 
     private int GetLevelNumber(string levelName)
     {

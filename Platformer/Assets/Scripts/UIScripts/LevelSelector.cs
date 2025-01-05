@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelSelector : MonoBehaviour
 {
-    public Button[] levelButtons; // Assign buttons for levels in the Inspector
+    public Button[] levelButtons; 
+    public TMP_Text easyBestTimeText;  
+    public TMP_Text mediumBestTimeText; 
+    public TMP_Text hardBestTimeText;   
     public Canvas levelCanvas;
     public Canvas difficultyCanvas;
 
@@ -14,7 +18,7 @@ public class LevelSelector : MonoBehaviour
 
     private void Start()
     {
-        UnlockLevels(); // Unlock levels based on progress
+        UnlockLevels(); 
     }
 
     private void UnlockLevels()
@@ -33,9 +37,12 @@ public class LevelSelector : MonoBehaviour
     {
         levelName = "Level" + levelId;
         Debug.Log($"[LevelSelector] Selected {levelName}");
+        PlayerPrefs.SetString("CurrentLevelName", levelName); // Save to PlayerPrefs
+        PlayerPrefs.Save();
 
         levelCanvas.gameObject.SetActive(false);
         difficultyCanvas.gameObject.SetActive(true);
+        UpdateBestTimesForSelectedLevel();
     }
 
     public void SelectDifficulty(int difficulty)
@@ -47,5 +54,35 @@ public class LevelSelector : MonoBehaviour
         Debug.Log($"[LevelSelector] Loading scene: {fullSceneName}");
 
         SceneManager.LoadScene(fullSceneName);
+    }
+    private void UpdateBestTimesForSelectedLevel()
+    {
+        Debug.Log($"[LevelSelector] Retrieving best times for {levelName}");
+
+        // Use PlayerPrefs to retrieve best times for the selected level
+        float easyBestTime = PlayerPrefs.GetFloat(levelName + "Easy_BestTime", float.MaxValue);
+        float mediumBestTime = PlayerPrefs.GetFloat(levelName + "Medium_BestTime", float.MaxValue);
+        float hardBestTime = PlayerPrefs.GetFloat(levelName + "Hard_BestTime", float.MaxValue);
+
+        // Update UI for each difficulty
+        easyBestTimeText.text = FormatTime(easyBestTime, "Easy Best Time: ");
+        mediumBestTimeText.text = FormatTime(mediumBestTime, "Medium Best Time: ");
+        hardBestTimeText.text = FormatTime(hardBestTime, "Hard Best Time: ");
+
+        // Debug logs for validation
+        Debug.Log($"[LevelSelector] {levelName} Easy Best Time: {easyBestTime}");
+        Debug.Log($"[LevelSelector] {levelName} Medium Best Time: {mediumBestTime}");
+        Debug.Log($"[LevelSelector] {levelName} Hard Best Time: {hardBestTime}");
+    }
+
+
+    private string FormatTime(float time, string prefix)
+    {
+        // If no time is recorded, display "--:--:--"
+        if (time == float.MaxValue) return $"{prefix} --:--:--";
+
+        // Format the time into minutes, seconds, and milliseconds
+        System.TimeSpan timeSpan = System.TimeSpan.FromSeconds(time);
+        return $"{prefix} {timeSpan:mm\\:ss\\:ff}";
     }
 }
