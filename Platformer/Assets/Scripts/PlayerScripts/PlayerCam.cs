@@ -37,7 +37,7 @@ public class PlayerCam : MonoBehaviour
         Cursor.visible = false;
 
         // Load the sensitivity value from PlayerPrefs
-        sensX = PlayerPrefs.GetFloat("Sensitivity", 2.0f); // 2.0f is a default value
+        sensX = PlayerPrefs.GetFloat("Sensitivity", 25.0f); 
         sensY = sensX; // Assuming both axes use the same sensitivity
 
         // Set initial camera direction based on current rotation
