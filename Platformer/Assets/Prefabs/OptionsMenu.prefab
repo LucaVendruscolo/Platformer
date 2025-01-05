@@ -346,9 +346,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4751009117056702686}
         m_TargetAssemblyTypeName: PauseOptionsManager, Assembly-CSharp
-        m_MethodName: SetSliderToDefault
+        m_MethodName: ToDefaultBGM
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -688,9 +688,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4751009117056702686}
         m_TargetAssemblyTypeName: PauseOptionsManager, Assembly-CSharp
-        m_MethodName: SetSliderToDefault
+        m_MethodName: ToDefaultSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -822,6 +822,8 @@ GameObject:
   - component: {fileID: 2103364542975765362}
   - component: {fileID: 3117614455948224523}
   - component: {fileID: 7599058186866283023}
+  - component: {fileID: 4751009117056702686}
+  - component: {fileID: 1053963662907043909}
   m_Layer: 0
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -897,6 +899,36 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4751009117056702686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020925420778259348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8adeecac4f38b241b380e8d1397610a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivitySlider: {fileID: 2835931628539311035}
+  bgmSlider: {fileID: 8919608167105373662}
+  sfxSlider: {fileID: 7010506518386744269}
+--- !u!114 &1053963662907043909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020925420778259348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671eed26beade4c45868b0c64d73c64d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 0}
+  pauseMenuPanel: {fileID: 0}
+  optionsMenuPanel: {fileID: 0}
 --- !u!1 &3302825950701297283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,7 +1565,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1053963662907043909}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: CloseOptions
         m_Mode: 1
@@ -1666,9 +1698,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4751009117056702686}
         m_TargetAssemblyTypeName: PauseOptionsManager, Assembly-CSharp
-        m_MethodName: SetSliderToDefault
+        m_MethodName: ToDefaultSens
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

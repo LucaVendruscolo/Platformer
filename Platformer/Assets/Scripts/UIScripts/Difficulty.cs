@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Difficulty : MonoBehaviour
 {
-    public TMP_Text easyBestTimeText;   // Assign in Inspector
-    public TMP_Text mediumBestTimeText; // Assign in Inspector
-    public TMP_Text hardBestTimeText;   // Assign in Inspector
+    public TMP_Text easyBestTimeText;  
+    public TMP_Text mediumBestTimeText;
+    public TMP_Text hardBestTimeText;  
 
     private string currentLevelName;    // The level name from PlayerPrefs
 
@@ -25,7 +25,7 @@ public class Difficulty : MonoBehaviour
     private void UpdateBestTimes()
     {
         // Use the current level name to fetch best times
-        string baseKey = currentLevelName; // e.g., "Level1", "Level2"
+        string baseKey = currentLevelName;
 
         // Retrieve and display the best time for Easy difficulty
         float easyBestTime = PlayerPrefs.GetFloat(baseKey + "Easy_BestTime", float.MaxValue);

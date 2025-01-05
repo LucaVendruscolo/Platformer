@@ -3,17 +3,17 @@ using UnityEngine.UI;
 
 public class PauseOptionsManager : MonoBehaviour
 {
-    public Slider sensitivitySlider; 
+    public Slider sensitivitySlider;
     public Slider bgmSlider;      
     public Slider sfxSlider;      
 
-    private float defaultSensitivity = 25.0f; 
-    private float defaultBGMVolume = 0.05f;   
-    private float defaultSFXVolume = 1f;      
+    private float defaultSensitivity = 25.0f;
+    private float defaultBGMVolume = 0.05f;
+    private float defaultSFXVolume = 1f;
 
-    private PlayerCam playerCam; 
-    private AudioManager audioManager; 
-    private AudioSource bgmAudioSource; 
+    private PlayerCam playerCam;
+    private AudioManager audioManager;
+    private AudioSource bgmAudioSource;
 
     private void Start()
     {
@@ -22,26 +22,24 @@ public class PauseOptionsManager : MonoBehaviour
 
         if (playerCam != null)
         {
-            // Get the AudioSource component from PlayerCam
             bgmAudioSource = playerCam.GetComponent<AudioSource>();
+            if (bgmAudioSource != null)
+            {
+                bgmAudioSource.ignoreListenerPause = true; // Allow updates while paused
+                Debug.Log("[PauseOptionsManager] BGM AudioSource found and configured.");
+            }
+            else
+            {
+                Debug.LogError("[PauseOptionsManager] No AudioSource found on PlayerCam!");
+            }
         }
 
-        // Find the AudioManager in the scene
-        audioManager = FindObjectOfType<AudioManager>();
+        // Load settings
+        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", defaultSensitivity);
+        bgmSlider.value = PlayerPrefs.GetFloat("BackgroundMusicVolume", defaultBGMVolume);
+        sfxSlider.value = PlayerPrefs.GetFloat("GlobalSFXVolume", defaultSFXVolume);
 
-        // Load and initialize sensitivity
-        float savedSensitivity = PlayerPrefs.GetFloat("Sensitivity", defaultSensitivity);
-        sensitivitySlider.value = savedSensitivity;
-
-        // Load and initialize BGM volume
-        float savedBGMVolume = PlayerPrefs.GetFloat("BackgroundMusicVolume", defaultBGMVolume);
-        bgmSlider.value = savedBGMVolume;
-
-        // Load and initialize SFX volume
-        float savedSFXVolume = PlayerPrefs.GetFloat("GlobalSFXVolume", defaultSFXVolume);
-        sfxSlider.value = savedSFXVolume;
-
-        // Add listeners for when slider values change
+        // Add listeners
         sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
         bgmSlider.onValueChanged.AddListener(OnBGMVolumeChanged);
         sfxSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
@@ -49,7 +47,7 @@ public class PauseOptionsManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Remove the listeners to avoid memory leaks
+        // Remove listeners to avoid memory leaks
         sensitivitySlider.onValueChanged.RemoveListener(OnSensitivityChanged);
         bgmSlider.onValueChanged.RemoveListener(OnBGMVolumeChanged);
         sfxSlider.onValueChanged.RemoveListener(OnSFXVolumeChanged);
@@ -61,34 +59,27 @@ public class PauseOptionsManager : MonoBehaviour
         {
             playerCam.UpdateSensitivity(newValue);
         }
-
-        // Save the sensitivity to PlayerPrefs
         PlayerPrefs.SetFloat("Sensitivity", newValue);
         PlayerPrefs.Save();
     }
 
     private void OnBGMVolumeChanged(float newValue)
     {
-        if (bgmAudioSource != null && bgmAudioSource.isPlaying)
+        if (bgmAudioSource != null)
         {
-            bgmAudioSource.volume = newValue; // Adjust volume in real time
+            bgmAudioSource.volume = newValue; // Real-time volume adjustment
+            Debug.Log($"[PauseOptionsManager] BGM volume updated to: {newValue}");
         }
-
-
-        // Save the BGM volume to PlayerPrefs
         PlayerPrefs.SetFloat("BackgroundMusicVolume", newValue);
         PlayerPrefs.Save();
     }
 
     private void OnSFXVolumeChanged(float newValue)
     {
-        // Update the sound effects volume
         if (audioManager != null)
         {
             audioManager.UpdateGlobalSFXVolume(newValue); // Ensure your AudioManager has this method
         }
-
-        // Save the SFX volume to PlayerPrefs
         PlayerPrefs.SetFloat("GlobalSFXVolume", newValue);
         PlayerPrefs.Save();
     }
@@ -98,11 +89,13 @@ public class PauseOptionsManager : MonoBehaviour
         sensitivitySlider.value = defaultSensitivity;
         OnSensitivityChanged(defaultSensitivity);
     }
+
     public void ToDefaultBGM()
     {
         bgmSlider.value = defaultBGMVolume;
         OnBGMVolumeChanged(defaultBGMVolume);
     }
+
     public void ToDefaultSFX()
     {
         sfxSlider.value = defaultSFXVolume;
