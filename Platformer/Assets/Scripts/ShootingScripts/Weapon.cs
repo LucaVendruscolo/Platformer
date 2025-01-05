@@ -71,14 +71,14 @@ public class Weapon : MonoBehaviour
 
     private void Fire(InputAction.CallbackContext context)
     {
-        // Check centralized reload state
+        // checks if the gun is reloading. if it still is, then return immediately.
         if (canShootCallback != null && !canShootCallback() && selectedGunID == 1)
         {
             Debug.Log("Can't shoot, still reloading.");
             return;
         }
 
-        // Play appropriate shooting sound
+        // play sound (pistol or shotgun)
         if (selectedGunID == 0)
         {
             FindAnyObjectByType<AudioManager>().Play("PistolShootSound");
@@ -92,7 +92,7 @@ public class Weapon : MonoBehaviour
             Debug.Log("Sound effect NOT playing.");
         }
 
-        // Trigger shooting animation
+        // shooting animation.
         if (animator != null)
         {
             animator.SetTrigger("Shoot");
@@ -102,19 +102,19 @@ public class Weapon : MonoBehaviour
             Debug.Log("Animator is null!!!");
         }
 
-        // Play muzzle flash
+        // muzzle flash effect.
         if (muzzleFlash != null)
         {
             muzzleFlash.Play();
         }
 
-        // Start reload via GunLoader
+        // start reload courotine.
         if (startReloadCallback != null)
         {
             startReloadCallback();
         }
 
-        // Apply knockback for shotgun
+        // knock the player back (this only happens if shotgun is equipped.)
         if (spreadAngle > 0 && playerRigidbody != null)
         {
             ApplyKnockback();
@@ -162,7 +162,7 @@ public class Weapon : MonoBehaviour
         playerRigidbody.AddForce(knockbackDirection * knockbackStrength, ForceMode.Impulse);
     }
 
-    private void CreateExplosionEffect(Vector3 position)
+    private void CreateExplosionEffect(Vector3 position) // creates flash at the positions where the raycasts hit.
     {
         if (muzzleFlash != null)
         {
@@ -176,7 +176,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void HandleHit(RaycastHit hit)
+    private void HandleHit(RaycastHit hit) // this is for when the user shoots an enemy, secret or powerup.
     {
         GameObject hitObject = hit.collider.gameObject;
 

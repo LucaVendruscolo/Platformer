@@ -5,14 +5,14 @@ using UnityEngine.UI;
 public class ReloadProgressBar : MonoBehaviour
 {
     private Slider reloadSlider;
-    public GunLoader gunLoader; // Reference to GunLoader instead of Weapon
+    public GunLoader gunLoader; 
 
     private void Awake()
     {
         reloadSlider = gameObject.GetComponent<Slider>();
         if (reloadSlider != null)
         {
-            reloadSlider.gameObject.SetActive(false); // Hide slider initially
+            reloadSlider.gameObject.SetActive(false); // slider is hidden initially.
         }
     }
 
@@ -36,7 +36,7 @@ public class ReloadProgressBar : MonoBehaviour
         }
     }
 
-    private void StartReload(float reloadTime)
+    private void StartReload(float reloadTime) // begins filling the bar when reload is called.
     {
         if (reloadSlider != null)
         {
@@ -58,7 +58,7 @@ public class ReloadProgressBar : MonoBehaviour
         }
 
         reloadSlider.value = 1f;
-        reloadSlider.gameObject.SetActive(false); // Hide slider after filling
+        reloadSlider.gameObject.SetActive(false); // slider disappears after filled.
     }
 
     public void SubscribeToGunLoader()
