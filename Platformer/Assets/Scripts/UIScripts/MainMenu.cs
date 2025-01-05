@@ -56,4 +56,32 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quit!");
         Application.Quit();
     }
+    public void ResetAllProgress()
+    {
+        // Total number of levels in the game
+        int totalLevels = 3; // Adjust based on your game
+
+        // Loop through all levels
+        for (int i = 1; i <= totalLevels; i++) // Assuming levels are 1-indexed
+        {
+            string baseKey = "Level" + i;
+
+            // Clear level completion data
+            PlayerPrefs.DeleteKey(baseKey + "_Completed");
+
+            // Clear best time data for all difficulties
+            PlayerPrefs.DeleteKey(baseKey + "Easy_BestTime");
+            PlayerPrefs.DeleteKey(baseKey + "Medium_BestTime");
+            PlayerPrefs.DeleteKey(baseKey + "Hard_BestTime");
+        }
+
+        // Unlock only Level 1
+        PlayerPrefs.SetInt("Level1_Completed", 1);
+
+        // Save changes to PlayerPrefs
+        PlayerPrefs.Save();
+
+        // Debug confirmation
+        Debug.Log("Progress has been reset. Only Level 1 is unlocked.");
+    }
 }
