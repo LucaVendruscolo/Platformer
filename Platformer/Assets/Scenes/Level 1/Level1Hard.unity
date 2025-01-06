@@ -4215,6 +4215,7 @@ MonoBehaviour:
   sensitivitySlider: {fileID: 174420809}
   bgmSlider: {fileID: 82980899}
   sfxSlider: {fileID: 575042964}
+  mdsSlider: {fileID: 0}
 --- !u!114 &479636630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8615,7 +8616,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c852af001dae0064e9acaa832f1dadb7, type: 2}
+  - {fileID: 2100000, guid: cce8829fd3a150a49af7d665c5253b8e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
