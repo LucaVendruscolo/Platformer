@@ -7,7 +7,7 @@ public class BackgroundMusic : MonoBehaviour
     private void Awake()
     {
         // Ensure this GameObject persists across scenes
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         // Get the AudioSource component located in PlayerCam
         audioSource = GetComponent<AudioSource>();
