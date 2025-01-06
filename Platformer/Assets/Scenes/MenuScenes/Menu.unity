@@ -7987,7 +7987,7 @@ MonoBehaviour:
   videoCanvas: {fileID: 1120889972}
   menuCanvas: {fileID: 1097756432}
   videoPlayer: {fileID: 349641201}
-  tutorialClip: {fileID: 32900000, guid: b436ec3116debbf49af7c516139c58a7, type: 3}
+  tutorialClip: {fileID: 32900000, guid: 1182b9b33df4e834aafcfaa4f37f8203, type: 3}
   level1Clip: {fileID: 32900000, guid: 1182b9b33df4e834aafcfaa4f37f8203, type: 3}
   level2Clip: {fileID: 32900000, guid: 3f8f870a06c35a143877c4bf28285d2f, type: 3}
   level3Clip: {fileID: 32900000, guid: 6558b56f553c1a64ab62f48df16610e3, type: 3}
