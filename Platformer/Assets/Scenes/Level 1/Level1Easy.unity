@@ -2401,6 +2401,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8adeecac4f38b241b380e8d1397610a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &153948165 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8305040394935565312, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
+  m_PrefabInstance: {fileID: 153948163}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &169000274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4665,7 +4676,7 @@ MonoBehaviour:
   sensitivitySlider: {fileID: 174420809}
   bgmSlider: {fileID: 82980899}
   sfxSlider: {fileID: 575042964}
-  mdsSlider: {fileID: 0}
+  mdsSlider: {fileID: 153948165}
 --- !u!114 &479636630
 MonoBehaviour:
   m_ObjectHideFlags: 0
