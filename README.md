@@ -6,29 +6,51 @@ Select a difficulty for the level.
 Try to reach the end of the level and aim for the highest time!
 
 Controls
+
 Left Click - Shoot
+
 Right Click - Use Power Up (Shown at bottom right)
+
 WASD - Move
+
 Space - Jump
+
 C - on ground(Crouch) in air (Dive)
+
 SHIFT - on ramps (Slide)
+
 Scroll Wheel - Swap Weapons
+
 ESC - opens an in-game menu
 
 
+
 You have 2 weapons 
+
 Pistol - No reload
+
 Shotgun-  Reload time, blasts you back (Hint : Shoot downwards to boost yourself upwards when jumping)
+
 Don't touch the ground - You will die
+
 You may touch ramps
+
 Don't Touch the pipes in the Pot - You will die
+
 Don't Fall off - You will die
+
 Red bar is decreasing, shoot the jelly monsters to regain health
+
 Purple Monster - Restores health only
+
 Orange Monster - Reveals a secret
+
 Green Monster - Restores health and gives dash powerup
+
 Blue Monster - Restores health and gives jump powerup
+
 Powers are single use
+
 Powers will be replaced by other powers
 
 
