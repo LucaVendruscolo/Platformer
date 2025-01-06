@@ -6,10 +6,12 @@ public class PauseOptionsManager : MonoBehaviour
     public Slider sensitivitySlider;
     public Slider bgmSlider;      
     public Slider sfxSlider;      
+    public Slider mdsSlider; 
 
     private float defaultSensitivity = 25.0f;
     private float defaultBGMVolume = 0.05f;
     private float defaultSFXVolume = 1f;
+    private float defaultMDSVolume = 1f;
 
     private PlayerCam playerCam;
     private AudioManager audioManager;
@@ -34,15 +36,23 @@ public class PauseOptionsManager : MonoBehaviour
             }
         }
 
+        audioManager = AudioManager.instance;
+        if (audioManager == null)
+        {
+            Debug.LogError("[PauseOptionsManager] AudioManager instance not found!");
+        }
+
         // Load settings
         sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", defaultSensitivity);
         bgmSlider.value = PlayerPrefs.GetFloat("BackgroundMusicVolume", defaultBGMVolume);
         sfxSlider.value = PlayerPrefs.GetFloat("GlobalSFXVolume", defaultSFXVolume);
+        mdsSlider.value = PlayerPrefs.GetFloat("GlobalMDSVolume", defaultMDSVolume);
 
         // Add listeners
         sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
         bgmSlider.onValueChanged.AddListener(OnBGMVolumeChanged);
         sfxSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
+        mdsSlider.onValueChanged.AddListener(OnMDSVolumeChanged); 
     }
 
     private void OnDestroy()
@@ -51,6 +61,7 @@ public class PauseOptionsManager : MonoBehaviour
         sensitivitySlider.onValueChanged.RemoveListener(OnSensitivityChanged);
         bgmSlider.onValueChanged.RemoveListener(OnBGMVolumeChanged);
         sfxSlider.onValueChanged.RemoveListener(OnSFXVolumeChanged);
+        mdsSlider.onValueChanged.RemoveListener(OnMDSVolumeChanged); 
     }
 
     private void OnSensitivityChanged(float newValue)
@@ -78,9 +89,19 @@ public class PauseOptionsManager : MonoBehaviour
     {
         if (audioManager != null)
         {
-            audioManager.UpdateGlobalSFXVolume(newValue); // Ensure your AudioManager has this method
+            audioManager.UpdateGlobalSFXVolume(newValue); 
         }
         PlayerPrefs.SetFloat("GlobalSFXVolume", newValue);
+        PlayerPrefs.Save();
+    }
+
+    private void OnMDSVolumeChanged(float newValue)
+    {
+        if (audioManager != null)
+        {
+            audioManager.UpdateGlobalMDSVolume(newValue); 
+        }
+        PlayerPrefs.SetFloat("GlobalMDSVolume", newValue);
         PlayerPrefs.Save();
     }
 
@@ -100,5 +121,11 @@ public class PauseOptionsManager : MonoBehaviour
     {
         sfxSlider.value = defaultSFXVolume;
         OnSFXVolumeChanged(defaultSFXVolume);
+    }
+
+    public void ToDefaultMDS()
+    {
+        mdsSlider.value = defaultMDSVolume;
+        OnMDSVolumeChanged(defaultMDSVolume);
     }
 }

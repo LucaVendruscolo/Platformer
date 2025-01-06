@@ -9,7 +9,9 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     [Range(0f, 1f)]
-    public float globalSFXVolume = 1f; // Global SFX volume multiplier
+    public float globalSFXVolume = 1f; 
+    [Range(0f, 1f)]
+    public float globalMonsterDeathVolume = 1f;
 
     private void Awake()
     {
@@ -96,4 +98,20 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat("GlobalSFXVolume", globalSFXVolume);
         PlayerPrefs.Save();
     }
+    public void UpdateGlobalMDSVolume(float multiplier)
+    {
+        globalMonsterDeathVolume = multiplier;
+
+        foreach (Sound mds in monsterDeathSounds)
+        {
+            if (mds.source != null)
+            {
+                mds.source.volume = mds.volume * globalMonsterDeathVolume;
+            }
+        }
+
+        PlayerPrefs.SetFloat("GlobalMDSVolume", globalMonsterDeathVolume);
+        PlayerPrefs.Save();
+    }
+
 }

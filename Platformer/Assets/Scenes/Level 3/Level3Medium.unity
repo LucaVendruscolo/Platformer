@@ -4192,6 +4192,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnZone: {fileID: 561296813}
   wayPointObject: {fileID: 1683872794}
+--- !u!114 &287268816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4751009117056702686, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
+  m_PrefabInstance: {fileID: 1855729283}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855729288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8adeecac4f38b241b380e8d1397610a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &288604097 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1785972770615978053, guid: ff395a592fd37a64faade66bb8598f75, type: 3}
@@ -9656,8 +9667,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastScene: 
-  finalScore: 0
+  currentLevelName: 
   finalTime: 0
+  finalScore: 0
 --- !u!4 &646993338
 Transform:
   m_ObjectHideFlags: 0
@@ -28172,6 +28184,10 @@ PrefabInstance:
     - target: {fileID: 2604123730637123224, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 287268816}
+    - target: {fileID: 2604123730637123224, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToDefaultSens
       objectReference: {fileID: 0}
     - target: {fileID: 3020925420778259348, guid: b1bf05c2d70041c42b0cb0e3228f0659, type: 3}
       propertyPath: m_Name

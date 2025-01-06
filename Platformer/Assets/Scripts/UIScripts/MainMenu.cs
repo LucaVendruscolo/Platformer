@@ -18,9 +18,6 @@ public class MainMenu : MonoBehaviour
         // Unlock cursor for menu navigation
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-        // Ensure only the main menu is visible at start
-        ShowMainMenu();
     }
 
     public void PlayGame()
