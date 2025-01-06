@@ -88,6 +88,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void RestartGame()
     {
+        Resume();
         Time.timeScale = 1f; // Reset time scale to normal before restarting
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
     }
@@ -105,6 +106,7 @@ public class PauseMenu : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        Resume();
         Time.timeScale = 1f; // Reset time scale to normal
         SceneManager.LoadScene("Menu"); 
     }
