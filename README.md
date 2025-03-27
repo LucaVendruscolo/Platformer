@@ -1,4 +1,4 @@
-*** How to Play
+### How to Play
 
 Github Pages link - https://lucavendruscolo.github.io/Platformer-builds/build/index.html
 
