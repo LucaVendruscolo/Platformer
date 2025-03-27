@@ -1,4 +1,7 @@
-How to Play
+*** How to Play
+
+Github Pages link - https://lucavendruscolo.github.io/Platformer-builds/build/index.html
+
 You can edit some parameters in Options, such as sensitivity and audio
 Click play and select a level
 Level 2 and 3 will be locked until you beat the previous level
